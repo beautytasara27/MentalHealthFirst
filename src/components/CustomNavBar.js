@@ -5,10 +5,7 @@ import {AuthConsumer} from './Context/AuthContext'
 
 export default class CustomNavBar extends Component{
     state = {expanded:false}
-    // constructor(){
-    //     super();
-    //     this.
-    // }
+  
     render(){
         return(
         <Navbar expanded={this.state.expanded} className="navbar-default" expand="sm" bg="light" variant="light" sticky="top">
@@ -28,10 +25,10 @@ export default class CustomNavBar extends Component{
                         {isAuth? (
                             <div>
                             <button onClick={logout}>logout</button>
-                            <NavDropdown title="Profile" id="collasible-nav-dropdown">
+                            <NavDropdown title={isAuth.displayName} id="collasible-nav-dropdown">
                             <NavDropdown.Item href="/ProfilePage">Profile Settings</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
+                            <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
                         </NavDropdown>
                         </div>
                         ) : 

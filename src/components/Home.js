@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React ,{Component} from 'react'
-import { Row, Col, Container, Jumbotron, Card, Button } from 'react-bootstrap'
+import { Row, Col, Container, Jumbotron, Card, Button, CardColumns } from 'react-bootstrap'
 import {BrowserRouter, Link, Switch} from 'react-router-dom'
 import {stories} from '../data/data'
 import Dotdotdot from 'react-dotdotdot'
@@ -11,9 +11,10 @@ class Home extends Component{
         //
         const postList = stories.map(post =>{
         return(
+            
             <li key={post.id} style={{padding: "20px", listStyle:"none"}}>
-                <Container className="fluid" style={{backgroundColor: 'lightblue',position: "center"}}>
-                <Link to={'/PostFull'+ post.id} style={{color: 'black'}}>
+                <Container style={{backgroundColor: 'lightblue',position: "center"}}>
+                <Link to={'/PostFull/'+ post.id} style={{color: 'black'}}>
                     <Card className='mx-auto'  border="Secondary" style={{ width: '40rem' , float:'none'}}>
     
                     <Card.Img variant="top" src={post.img}/> 
@@ -29,15 +30,20 @@ class Home extends Component{
                 </Link>
                 </Container>
             </li>
+            
         
             
         )
     })
 
     return(
+        <Jumbotron className="fluid" style={{backgroundColor:'#ffd1dc', paddingTop: "20px", listStyle:"none"}}>
         <div>
+        
             <ul>{postList}</ul>
+            
         </div>
+        </Jumbotron>
         
     )
     

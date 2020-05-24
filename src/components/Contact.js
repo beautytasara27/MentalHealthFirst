@@ -8,27 +8,26 @@ export default class Contact extends Component{
     }
     render(){
         return(
-            <Container>
-                <Jumbotron>
-                  <h2>We wellcome all feedback</h2>
-                </Jumbotron>
+            
+                <Jumbotron style={{backgroundColor: '#ffd1dc',position: "center", padding:'200px', paddingTop:"100px"}}>
+                
+                  <h2 style={{padding:'20px'}} className="text-center">Contact Us</h2>
+                  <Container style={{backgroundColor: 'lightblue',position: "center", padding:'60px'}}>
                 <form id="contact-form" onSubmit={this.handleSubmit.bind(this)} >
-                    <div className="form-group">
+                    <div className="  form-group border-bottom  border-primary">
                         <label htmlFor="name">Name</label>
-                        <input type="text" className="form-control" />
+                        <input type="text" className="form-control" style={{background:'none'}}/>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Email address</label>
-                        <input type="email" className="form-control" aria-describedby="emailHelp" />
-                    </div>
-                    <div className="form-group">
+                    <div className=" form-group border-bottom border-primary">
                         <label htmlFor="message">Message</label>
-                        <textarea className="form-control" rows="5"></textarea>
+                        <textarea style={{background:'none'}} className="form-control" rows="1"></textarea>
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
                             </form>
+                            </Container>
                
-            </Container>
+          
+            </Jumbotron>
    
         )
     }

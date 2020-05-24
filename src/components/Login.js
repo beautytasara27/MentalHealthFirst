@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import {Jumbotron,Form, Container, Row, Col, Button} from 'react-bootstrap'
 import firebase from './config/fbConfig'
+import {Link} from 'react-router-dom'
 
 export default class Login extends Component{
   constructor(props){
@@ -40,14 +41,13 @@ export default class Login extends Component{
     
     render(){
         return(
-            <Container>
-                <Jumbotron>
-                  <h2>Welcome to my page</h2>
-                  <p>Sign UP</p>
-                </Jumbotron>
+          <Jumbotron style={{backgroundColor: '#ffd1dc',position: "center", padding:'200px'}}>
+
+            <Container style={{backgroundColor: 'lightblue',padding:'20px',position: "center",}} >
+                  <h2 className="text-center">Login</h2>
                 <Form onSubmit={this.handleSubmit}>
                 <Form.Group >
-                    <Form.Label>Username</Form.Label>
+                    <Form.Label  >Username</Form.Label>
                     <Form.Control id="email" type="text" placeholder="Enter email" onChange={this.handleChange}/>
                 </Form.Group>
                 <Form.Group >
@@ -56,10 +56,11 @@ export default class Login extends Component{
                 </Form.Group>
                 <Button variant="primary" type="submit" style={{color:"white"}} >Login
                 </Button>
-                <Button variant="primary" style={{color:"white"}} onClick={this.signup}>Signup
-                </Button>
                 </Form>
+                <Link variant="primary"  onClick={this.signup}>Not a member? Sign Up here
+                </Link>
             </Container>
+          </Jumbotron>
    
         )
     }
