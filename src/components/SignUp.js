@@ -38,15 +38,13 @@ export default class Signup extends Component{
       }
     render(){
         return(
-            <Container>
-                <Jumbotron>
-                  <h2>Welcome to my page</h2>
-                  <p>Sign UP</p>
-                </Jumbotron>
+          <Jumbotron style={{backgroundColor: '#ffd1dc',position: "center", padding:'200px'}}>
+            <Container style={{backgroundColor: 'lightblue',padding:'20px',position: "center",}}>
+            <h2 className="text-center">SignUp</h2>
                 <Form onSubmit={this.handleSubmit}>
                 <Form.Group >
                     <Form.Label>displayName</Form.Label>
-                    <Form.Control id="displayName" type="text" placeholder="Enter Username" onChange={this.handleChange}/>
+                    <Form.Control id="displayName" type="text" placeholder="Enter DisplayName" onChange={this.handleChange}/>
                 </Form.Group>
                 <Form.Group >
                 <Form.Label>Email address</Form.Label>
@@ -64,7 +62,9 @@ export default class Signup extends Component{
                     Submit
                 </Button>
                 </Form>
+                 
             </Container>
+            </Jumbotron>
    
         )
     }

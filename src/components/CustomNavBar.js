@@ -23,14 +23,14 @@ export default class CustomNavBar extends Component{
                         <Link to={'/forum'} className="nav-link" onClick={() => this.setState({expanded:false})} > Forum </Link>
                         
                         {isAuth? (
-                            <div>
-                            <button onClick={logout}>logout</button>
+                            <Nav>
+                            <Link className="nav-link" onClick={logout}>LogOut |</Link>
                             <NavDropdown title={isAuth.displayName} id="collasible-nav-dropdown">
                             <NavDropdown.Item href="/ProfilePage">Profile Settings</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+                            <NavDropdown.Item className="nav-link" onClick={logout}>Logout</NavDropdown.Item>
                         </NavDropdown>
-                        </div>
+                        </Nav>
                         ) : 
                         (<Link to={'/login'} className="nav-link" onClick={() => this.setState({expanded:false})} > Login </Link>)}
                     </Nav>

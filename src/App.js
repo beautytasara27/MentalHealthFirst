@@ -16,6 +16,7 @@ import PostFull from './components/PostFull'
 import PasswordReset from './components/PasswordReset';
 import ImageUpload from './components/ImageUpload';
 import ProfilePage from './components/ProfilePage'
+import Thread from './components/Thread'
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
       <NavBar/>
       
       <Route exact path="/" component={Home}/>
-      <Route path="/forum" component={Forum}/>
+      <Route exact path="/forum" component={Forum}/>
       <Route path="/login" component={Login}/>
       <Route path="/PostFull/:postId" component={PostFull}/>
       <Route path="/about" component={About}/>
@@ -35,7 +36,7 @@ function App() {
       <Route path="/resetpassword" component={PasswordReset}/>
       <Route path="/imageupload" component={ImageUpload}/>
       <Route path="/profilepage" component={ProfilePage}/>
-      
+      <Route path="/forum/:threadId" component={Thread}/>
     </div>
     </AuthProvider>
     </Router>

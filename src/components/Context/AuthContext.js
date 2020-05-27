@@ -1,5 +1,5 @@
 import React from 'react'
-import { auth } from 'firebase'
+import { auth } from 'firebase/app'
 import firebase from '../config/fbConfig'
 import { generateUserDocument } from '../config/fbConfig'
 

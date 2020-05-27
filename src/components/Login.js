@@ -5,7 +5,9 @@ import {Jumbotron,Form, Container, Row, Col, Button} from 'react-bootstrap'
 import firebase from './config/fbConfig'
 import {Link} from 'react-router-dom'
 
+
 export default class Login extends Component{
+  
   constructor(props){
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -33,7 +35,7 @@ export default class Login extends Component{
         e.preventDefault();
         firebase.auth().signInWithEmailAndPassword(this.state.email,this.state.password).then((u)=>{
           console.log("signed in",u)
-          this.props.history.push('/forum')
+          this.props.history.push({pathname: '/forum', data: "hr" })
         }).catch((err)=>{
           console.log(err)
         })
