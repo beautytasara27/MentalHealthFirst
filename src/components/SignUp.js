@@ -5,11 +5,18 @@ import {Jumbotron, Form, Container, Row, Col, Button} from 'react-bootstrap'
 import firebase, { generateUserDocument } from './config/fbConfig'
 
 export default class Signup extends Component{
-    state = {
-        email: '',
-        password: '',
-        displayName: '',
-      }
+  constructor(props){
+    super(props)
+    this.state = {
+      email: '',
+      password: '',
+      displayName: '',
+      file: {},
+      isloggedIn : false,
+      imgUrl : ''
+    }
+    
+  }
       handleChange = (e) => {
         if(e.target.password===e.target.confirm){
           this.setState({
@@ -19,12 +26,16 @@ export default class Signup extends Component{
         else{
           alert("passwords do not match");
         }
-        
       }
+      chooseFile = (e) => {
+        this.setState({file : e.target.files[0]});
+          
+      }
+
       handleSubmit = (e) => {
         e.preventDefault();
         const {user} =firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
-            generateUserDocument(user, {displayName})
+           // generateUserDocument(user)
           console.log(u)
           this.setState({isloggedIn:true})
         }).catch((err)=>{
@@ -36,6 +47,7 @@ export default class Signup extends Component{
         )
         
       }
+
     render(){
         return(
           <Jumbotron style={{backgroundColor: '#ffd1dc',position: "center", padding:'200px'}}>

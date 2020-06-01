@@ -6,6 +6,7 @@ import {stories} from '../data/data'
 import Dotdotdot from 'react-dotdotdot'
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
+import {GetDataConsumer} from './Context/DataStore'
 
 export const responsive = {
     superLargeDesktop: {
@@ -82,7 +83,7 @@ class Home extends Component{
     })
 
     return(
-        <div>
+    <div>
         <Jumbotron className="fluid" style={{backgroundColor:'#ffd1dc', paddingTop: "20px", listStyle:"none"}}>
         <div>
             <ul>{postList}</ul>
@@ -93,6 +94,9 @@ class Home extends Component{
         {cardDeckk}
         </Carousel>
         </div>
+       
+    
+       
         
     )
     

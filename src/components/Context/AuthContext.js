@@ -6,7 +6,7 @@ import { generateUserDocument } from '../config/fbConfig'
 const AuthContext = React.createContext({user: null})
 
 class AuthProvider extends React.Component {
-  state = { user: null }
+  state = { user: null}
   constructor() {
     super()
     this.login = this.login.bind(this)
@@ -42,10 +42,13 @@ class AuthProvider extends React.Component {
 
   //keeps track of the user whenever the authentication changes
  componentDidMount = () =>{
+  console.log("auth=",auth())
      auth().onAuthStateChanged(async userAuth => {
-         const user = await generateUserDocument(userAuth);
-         console.log("on start :", user)
+         const user = firebase.auth().currentUser
+         // await generateUserDocument(userAuth);
          this.setState({user})
+         console.log("on start :", user)
+        
      });
  };
 

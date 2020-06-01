@@ -17,12 +17,16 @@ import PasswordReset from './components/PasswordReset';
 import ImageUpload from './components/ImageUpload';
 import ProfilePage from './components/ProfilePage'
 import Thread from './components/Thread'
+import createArticle from './components/CreateArticle'
+import {DataStore} from './components/Context/DataStore'
+import UserMyposts from './components/UserMyposts'
 
 function App() {
   return (
     <div>
     <Router>
     <AuthProvider>
+    <DataStore>
     <div>
       <NavBar/>
       
@@ -37,7 +41,10 @@ function App() {
       <Route path="/imageupload" component={ImageUpload}/>
       <Route path="/profilepage" component={ProfilePage}/>
       <Route path="/forum/:threadId" component={Thread}/>
+      <Route path="/createArticle" component={createArticle}/>
+      <Route path="/myPosts" component={UserMyposts}/>
     </div>
+    </DataStore>
     </AuthProvider>
     </Router>
     <Footer/>
