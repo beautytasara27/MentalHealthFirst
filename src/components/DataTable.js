@@ -14,7 +14,7 @@ class DatatablePage extends Component {
     rowEvents = {
       onClick: (e, row, rowIndex) => {
         
-        this.props.history.push({pathname: 'forum/'+ row.id, data: row })
+        this.props.props.history.push({pathname: 'forum/'+ row.id, data: row })
         console.log("row is", row)
       }
     };
@@ -32,7 +32,7 @@ class DatatablePage extends Component {
             columns: [
             {
                 text: '',
-                dataField: 'author',
+                dataField: 'username',
                 width: 150
             },
             {
@@ -52,8 +52,9 @@ class DatatablePage extends Component {
             },
             {
                 text: 'Date',
-                dataField: 'date',
-                width: 150
+                dataField: 'dateCreated',
+                width: 150,
+                order: 'desc'
             }
             ],
             

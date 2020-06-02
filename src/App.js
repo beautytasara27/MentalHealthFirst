@@ -18,15 +18,15 @@ import ImageUpload from './components/ImageUpload';
 import ProfilePage from './components/ProfilePage'
 import Thread from './components/Thread'
 import createArticle from './components/CreateArticle'
-import {DataStore} from './components/Context/DataStore'
+import createThread from './components/createThread'
 import UserMyposts from './components/UserMyposts'
+import DataTablePage from './components/DataTable'
 
 function App() {
   return (
     <div>
     <Router>
     <AuthProvider>
-    <DataStore>
     <div>
       <NavBar/>
       
@@ -42,9 +42,10 @@ function App() {
       <Route path="/profilepage" component={ProfilePage}/>
       <Route path="/forum/:threadId" component={Thread}/>
       <Route path="/createArticle" component={createArticle}/>
+      <Route path="/createThread" component={createThread}/>
       <Route path="/myPosts" component={UserMyposts}/>
+      <Route path="/DataTable" component={DataTablePage}/>
     </div>
-    </DataStore>
     </AuthProvider>
     </Router>
     <Footer/>

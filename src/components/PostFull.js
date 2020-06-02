@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import {stories} from '../data/data'
 import{Card, Button, Jumbotron, Container, ListGroup, Row} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
 export default class PostFull extends Component{
   constructor(props){
@@ -33,7 +34,7 @@ export default class PostFull extends Component{
               {this.state.expanded? (<Card>
                 <ListGroup>
                 <ListGroup.Item><Link to='/createArticle'>Edit</Link> </ListGroup.Item>
-                <ListGroup.Item><Button>Delete</Button></ListGroup.Item>
+                <ListGroup.Item><Button onClick={this.deleteArticle}>Delete</Button></ListGroup.Item>
                 </ListGroup>
                 </Card>): null}
               
@@ -56,6 +57,12 @@ export default class PostFull extends Component{
  deleteArticle = (e) =>{
   e.preventDefault();
   //code to delete
+  axios.delete(`http://localhost:7003/v1/articles/${this.state.post.id}`)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+      this.setState({expanded:false})
 
 }
 }

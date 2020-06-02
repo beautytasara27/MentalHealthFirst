@@ -6,7 +6,8 @@ import {stories} from '../data/data'
 import Dotdotdot from 'react-dotdotdot'
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
-import {GetDataConsumer} from './Context/DataStore'
+import axios from 'axios'
+import { Articles } from './Context/DataStore'
 
 export const responsive = {
     superLargeDesktop: {
@@ -29,10 +30,28 @@ export const responsive = {
   };
 
 class Home extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            Articles: []
+        }
+    }
+    componentDidMount(){
+        axios.get( "http://localhost:7003/v1/articles").then(res=> {
+            
+            console.log(res.data)
+            this.setState({Articles: res.data})
+        }).
+        catch((error)=>{
+            console.log(error)
+        
+    })
+}
    
     render(){
         //
-        const postList = stories.slice(0,3).map(post =>{
+        console.log("my articles",this.state.Articles)
+        const postList = this.state.Articles.slice(0,3).map(post =>{
         return(
             
             <li key={post.id} style={{padding: "20px", listStyle:"none"}}>
@@ -40,12 +59,12 @@ class Home extends Component{
                 <Link to={'/PostFull/'+ post.id} style={{color: 'black'}}>
                     <Card className='mx-auto'  border="Secondary" style={{ width: '40rem' , float:'none'}}>
     
-                    <Card.Img variant="top" src={post.img}/> 
+                    <Card.Img variant="top" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"/> 
                     
                    <Card.Body style={{backgroundColor: 'white'}}>
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>
-                    <Dotdotdot clamp={4}><p>{post.body}</p></Dotdotdot>
+                    <Dotdotdot clamp={4}><p>{post.content}</p></Dotdotdot>
                     </Card.Text>
                     </Card.Body>
                     
@@ -58,7 +77,7 @@ class Home extends Component{
             
         )
     })
-    const cardDeckk = stories.slice(3).map(post=>{
+    const cardDeckk = this.state.Articles.slice(3).map(post=>{
         return(
             
             <li key={post.id} style={{padding: "20px", listStyle:"none"}}>
@@ -66,12 +85,12 @@ class Home extends Component{
             <Link to={'/PostFull/'+ post.id} style={{color: 'black'}}>
                 <Card className='mx-auto'  border="Secondary" style={{ width: '18rem' , float:'none'}}>
 
-                <Card.Img variant="top" src={post.img}/> 
+                <Card.Img variant="top" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"/> 
                 
                <Card.Body style={{backgroundColor: 'white'}}>
                 <Card.Title>{post.title}</Card.Title>
                 <Card.Text>
-                <Dotdotdot clamp={4}><p>{post.body}</p></Dotdotdot>
+                <Dotdotdot clamp={4}><p>{post.content}</p></Dotdotdot>
                 </Card.Text>
                 </Card.Body>
                 
