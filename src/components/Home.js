@@ -8,6 +8,7 @@ import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import axios from 'axios'
 import { Articles } from './Context/DataStore'
+import { CardText } from 'react-bootstrap/Card'
 
 export const responsive = {
     superLargeDesktop: {
@@ -47,29 +48,44 @@ class Home extends Component{
         
     })
 }
-   
+    handleClick= (post) => {
+        this.props.history.push({pathname: '/PostFull/'+ post.id, data: post })
+        console.log("post is", post)
+    }
     render(){
         //
         console.log("my articles",this.state.Articles)
         const postList = this.state.Articles.slice(0,3).map(post =>{
         return(
             
-            <li key={post.id} style={{padding: "20px", listStyle:"none"}}>
-                <Container style={{backgroundColor: 'lightblue',position: "center"}}>
-                <Link to={'/PostFull/'+ post.id} style={{color: 'black'}}>
-                    <Card className='mx-auto'  border="Secondary" style={{ width: '40rem' , float:'none'}}>
-    
+            <li key={post.id} style={{paddingTop: "20px", listStyle:"none", paddingLeft:"0px"}}>
+                <Container style={{backgroundColor: 'white',position: "center"}}>
+                <Button onClick={this.handleClick.bind(this, post)} style={{backgroundColor: 'white',color:'black', border:"none"}}>
+                    <Card className='mx-auto'  border="Secondary">
+                    <div className="row">
+                   
+                    <div className="col-lg-6 col-md-6  col-sm-12 col-xs-12 col-xl-6 ">
+                   
                     <Card.Img variant="top" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"/> 
+                    </div>
+                    <div className="col-lg-6 col-md-6  col-sm-12 col-xs-12 col-xl-6 ">
+                    <Card.Body style={{backgroundColor: 'white'}}>
                     
-                   <Card.Body style={{backgroundColor: 'white'}}>
+                    <Card.Text>{post.username}</Card.Text>
+                    <Card.Text>{post.dateCreated}</Card.Text>
+                    
+                   
+                    
+                   
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>
                     <Dotdotdot clamp={4}><p>{post.content}</p></Dotdotdot>
                     </Card.Text>
                     </Card.Body>
-                    
+                    </div>
+                    </div>
                 </Card>
-                </Link>
+                </Button>
                 </Container>
             </li>
             
@@ -77,14 +93,17 @@ class Home extends Component{
             
         )
     })
-    const cardDeckk = this.state.Articles.slice(3).map(post=>{
+    const cardDeckk = this.state.Articles.slice(1).map(post=>{
         return(
             
             <li key={post.id} style={{padding: "20px", listStyle:"none"}}>
-            <Container style={{backgroundColor: 'lightblue',position: "center"}}>
-            <Link to={'/PostFull/'+ post.id} style={{color: 'black'}}>
-                <Card className='mx-auto'  border="Secondary" style={{ width: '18rem' , float:'none'}}>
-
+            <Container style={{backgroundColor: 'white',position: "center"}}>
+            <Button onClick={this.handleClick.bind(this,post)} style={{backgroundColor: 'white',color:'black', border:"none"}}>
+                <Card className='mx-auto'  border="Secondary" >
+                <div>
+                    <Card.Text>{post.username}</Card.Text>
+                    <Card.Text>{post.dateCreated}</Card.Text>
+                    </div>
                 <Card.Img variant="top" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"/> 
                 
                <Card.Body style={{backgroundColor: 'white'}}>
@@ -95,20 +114,21 @@ class Home extends Component{
                 </Card.Body>
                 
             </Card>
-            </Link>
+            </Button>
             </Container>
         </li>
+        
         )
     })
 
     return(
     <div>
-        <Jumbotron className="fluid" style={{backgroundColor:'#ffd1dc', paddingTop: "20px", listStyle:"none"}}>
+        <Jumbotron className="fluid border-bottom secondary" style={{backgroundColor:'white', paddingTop: "20px", listStyle:"none"}}>
         <div>
             <ul>{postList}</ul>
         </div>
         </Jumbotron>
-        <text>Recent Posts</text>
+        <text className="display-4">Recent Posts</text>
         <Carousel responsive={responsive}>
         {cardDeckk}
         </Carousel>

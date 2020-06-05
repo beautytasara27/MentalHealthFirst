@@ -42,10 +42,11 @@ export default class Login extends Component{
       }
     
     render(){
+      var img ='https://cdn.pixabay.com/photo/2015/04/04/22/07/stone-707173_960_720.jpg'
         return(
-          <Jumbotron style={{backgroundColor: '#ffd1dc',position: "center", padding:'200px'}}>
+          <Jumbotron className="row justify-content-center" style={{backgroundImage:`url(${img})`, paddingTop:'200px', paddingBottom:"200px",opacity:"0.9"}}>
 
-            <Container style={{backgroundColor: 'lightblue',padding:'20px',position: "center",}} >
+            <div  className="col-lg-3 col-md-6  col-sm-12 col-xs-12 col-xl-3 " style={{backgroundColor: '#91BB7F',padding:'20px',position: "center",}} >
                   <h2 className="text-center">Login</h2>
                 <Form onSubmit={this.handleSubmit}>
                 <Form.Group >
@@ -56,12 +57,12 @@ export default class Login extends Component{
                     <Form.Label>Password</Form.Label>
                     <Form.Control id="password" type="password" placeholder="Password" onChange={this.handleChange}/>
                 </Form.Group>
-                <Button variant="primary" type="submit" style={{color:"white"}} >Login
-                </Button>
+                <button className="btn" type="submit" style={{backgroundColor:"#11643D",color:"white"}} >Login
+                </button>
                 </Form>
-                <Link variant="primary"  onClick={this.signup}>Not a member? Sign Up here
+                <Link style={{color:"#233C1D"}} onClick={this.signup}>Not a member? Sign Up here
                 </Link>
-            </Container>
+            </div>
           </Jumbotron>
    
         )

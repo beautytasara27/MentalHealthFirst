@@ -4,8 +4,8 @@ export default class Footer extends Component{
     render(){
         return(
             <Container fluid>
-            <Jumbotron fluid>
-            <footer>
+            <Jumbotron fluid style={{backgroundColor:"#789D68"}}>
+            <footer >
                 <div className="container">
                         <div className="mx-auto">
                             <p className="text-center"> &copy;2020 MentalHealthFirst. Binus International</p>

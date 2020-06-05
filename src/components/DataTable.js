@@ -38,7 +38,7 @@ class DatatablePage extends Component {
             {
                 text: 'title',
                 dataField: 'title',
-                width: 270
+                width: 300
             },
             {
                 text: 'Topic',
@@ -61,7 +61,7 @@ class DatatablePage extends Component {
             rows: dataRows
         }
 
-  
+  //
     return (
   
       <PaginationProvider
@@ -72,13 +72,13 @@ class DatatablePage extends Component {
           paginationTableProps
         }) => (
           <div>
+          <div className="row justify-content-between" style={{paddingRight:"30px", paddingLeft:"15px"}}>
           <SizePerPageDropdownStandalone
           { ...paginationProps }
           />
-          <PaginationTotalStandalone
-            { ...paginationProps }
-          />
+        
           <MySearch { ...this.props.searchProps } />
+          </div>
           <BootstrapTable
         
           responsive
@@ -88,9 +88,11 @@ class DatatablePage extends Component {
           rowEvents= {this.rowEvents}
           { ...paginationTableProps }
           />
+          <div style={{backgroundColor:"#233C1D"}}>
           <PaginationListStandalone
           { ...paginationProps }
           />
+          </div>
         </div>
         ) 
       }
@@ -107,15 +109,15 @@ class DatatablePage extends Component {
     };
     return (
       <div>
-      <Row>
+      <div className="row justify-content-end">
+
         <input
-          className="form-control"
-          style={ { backgroundColor: 'pink' } }
+          style={ { backgroundColor: 'white', borderColor:"green" } }
           ref={ n => input = n }
           type="text"
         />
-        <Button className="btn" onClick={ handleClick }>Search</Button>
-        </Row>
+        <button style={{backgroundColor:"#11643D", color:"white"}} className="btn" onClick={ handleClick }>Search</button>
+        </div>
       </div>
     );
   };  

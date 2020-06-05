@@ -8,8 +8,8 @@ export default class CustomNavBar extends Component{
   
     render(){
         return(
-        <Navbar expanded={this.state.expanded} className="navbar-default" expand="sm" bg="light" variant="light" sticky="top">
-            <Navbar.Brand href="#home">Mental Health First</Navbar.Brand>
+        <Navbar expanded={this.state.expanded} className="navbar-default" expand="sm"   sticky="top" style={{backgroundColor:"#053D2B", height:"80px"}}>
+            <Navbar.Brand href="#home" style={{color:"#041114"}}><h5>Mental Health First</h5></Navbar.Brand>
             <Navbar.Toggle onClick={()=>this.setState({expanded : this.state.expanded? false : true})} aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 
@@ -17,10 +17,10 @@ export default class CustomNavBar extends Component{
                 { ({isAuth,login, logout}) =>(
                    
                     <Nav className="mr-auto" >
-                        <Link to={'/'} className="nav-link" onClick={() => this.setState({expanded:false})} > Home </Link>
-                        <Link to={'/contact'} className="nav-link" onClick={() => this.setState({expanded:false})} > Contact </Link>
-                        <Link to={'/about'} className="nav-link" onClick={() => this.setState({expanded:false})} > About </Link>
-                        <Link to={'/forum'} className="nav-link" onClick={() => this.setState({expanded:false})} > Forum </Link>
+                        <Link to={'/'} style={{color:"white"}} className="nav-link" onClick={() => this.setState({expanded:false})} ><h5> Home </h5></Link>
+                        <Link to={'/contact'} style={{color:"white"}} className="nav-link" onClick={() => this.setState({expanded:false})} ><h5> Contact</h5> </Link>
+                        <Link to={'/about'} style={{color:"white"}} className="nav-link" onClick={() => this.setState({expanded:false})} ><h5> About </h5></Link>
+                        <Link to={'/forum'} style={{color:"white"}} className="nav-link" onClick={() => this.setState({expanded:false})} ><h5> Forum </h5></Link>
                         
                         {isAuth? (
                             <Nav>
@@ -32,7 +32,7 @@ export default class CustomNavBar extends Component{
                         </NavDropdown>
                         </Nav>
                         ) : 
-                        (<Link to={'/login'} className="nav-link" onClick={() => this.setState({expanded:false})} > Login </Link>)}
+                        (<Link to={'/login'} style={{color:"white"}} className="nav-link" onClick={() => this.setState({expanded:false})} > <h5>Login </h5></Link>)}
                     </Nav>
                     )
                     

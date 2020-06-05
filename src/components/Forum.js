@@ -30,8 +30,16 @@ export default class Forum extends Component {
   }
   render(){
     return(
-      <div>
-      <Button onClick={this.createPost}>Create New Post</Button>
+      <div className="container border primary">
+      <hr/>
+      <div className="row justify-content-between align-items-center" style={{paddingRight:"15px",paddingTop:"10px", paddingBottom:'10px'}}>
+      <div><text className="display-4" style={{paddingLeft:"15px"}}>All Threads</text></div>
+      <button style={{backgroundColor:"#11643D", color:"white", border:"none", height:"40px"}} onClick={this.createPost}>Create New Post</button>
+      </div>
+      <text>Our forum members are people, maybe like yourself, who experience mental health difficulties or who have had them at some point in their life. Amongst our membership there is a wealth of expertise that has been developed through having to deal with mental health issues.</text>
+      <span style={{paddingBottom:"10px"}}></span>
+      <hr/>
+      <span style={{paddingTop:"10px"}}></span>
       <DatatablePage tableData={this.state.posts} props={this.props}/>
       </div>
     )

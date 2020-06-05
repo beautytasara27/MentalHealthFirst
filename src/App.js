@@ -21,13 +21,14 @@ import createArticle from './components/CreateArticle'
 import createThread from './components/createThread'
 import UserMyposts from './components/UserMyposts'
 import DataTablePage from './components/DataTable'
+import editArticle from './components/editArticle'
 
 function App() {
   return (
-    <div>
+    <div >
     <Router>
     <AuthProvider>
-    <div>
+    <div >
       <NavBar/>
       
       <Route exact path="/" component={Home}/>
@@ -45,6 +46,7 @@ function App() {
       <Route path="/createThread" component={createThread}/>
       <Route path="/myPosts" component={UserMyposts}/>
       <Route path="/DataTable" component={DataTablePage}/>
+      <Route path="/editArticle" component={editArticle}/>
     </div>
     </AuthProvider>
     </Router>

@@ -7,44 +7,49 @@ import axios from 'axios'
 export default class PostFull extends Component{
   constructor(props){
         super(props);
+        console.log("myprops", this.props)
         this.state={
-          post:{},
+          post:this.props.location.data,
           expanded: false
         }
         
     }
-    componentDidMount(){
-      this.setState({post : stories.find(post => post.id == this.props.match.params.postId)})
-
-    }
+  
     render(){
        
-        
+        console.log(this.state.post)
         return(
-            <Jumbotron style={{backgroundColor:'#ffd1dc', paddingTop: "20px", listStyle:"none"}}>
-            <Container style={{backgroundColor: 'lightblue',position: "center"}}>
+            <Jumbotron style={{backgroundColor:'white', paddingTop: "20px", listStyle:"none"}}>
+            <Container style={{backgroundColor: 'white',position: "center"}}>
             <Card className='mx-auto' border="Secondary" style={{ width: '50rem',float:'none' }}>
-            <Row>
-              <Card.Title style={{padding:'30px'}} className="text-center">{this.state.post.title}</Card.Title>
-              <div>
-              <svg onClick={()=>this.setState({expanded:true})} className="bi bi-three-dots-vertical" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <Card.Body>
+            <div className="row justify-content-end">
+              <svg onClick={()=>this.setState({expanded:!this.state.expanded})} className="bi bi-three-dots-vertical" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
               </svg>
+              </div>
+              <div className="row justify-content-between" style={{padding:"20px"}}>
+              <Card.Text >{this.state.post.username}</Card.Text>
+              <Card.Text>{this.state.post.dateCreated}</Card.Text>
+              </div>
+            <Row>
+              <Card.Title style={{padding:'20px'}} className="text-center">{this.state.post.title}</Card.Title>
+              
               <div>
               {this.state.expanded? (<Card>
                 <ListGroup>
-                <ListGroup.Item><Link to='/createArticle'>Edit</Link> </ListGroup.Item>
+                <ListGroup.Item><Button onClick={()=>{this.props.history.push({pathname: '/editArticle', data: this.state.post })}}>Edit</Button> </ListGroup.Item>
                 <ListGroup.Item><Button onClick={this.deleteArticle}>Delete</Button></ListGroup.Item>
                 </ListGroup>
                 </Card>): null}
               
               </div>
-              </div>
               </Row>
-            <Card.Img variant="top" src={this.state.post.img} />
-            <Card.Body>
+             
+            <Card.Img variant="top" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" />
+           
               <Card.Text className="text-justify">
-               {this.state.post.body}
+               {this.state.post.content}
               </Card.Text>
             </Card.Body>
           </Card>
