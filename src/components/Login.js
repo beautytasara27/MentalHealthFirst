@@ -43,25 +43,29 @@ export default class Login extends Component{
     
     render(){
       var img ='https://cdn.pixabay.com/photo/2015/04/04/22/07/stone-707173_960_720.jpg'
-        return(
-          <Jumbotron className="row justify-content-center" style={{backgroundImage:`url(${img})`, paddingTop:'200px', paddingBottom:"200px",opacity:"0.9"}}>
+      // <Jumbotron className="row justify-content-center" style={{backgroundImage:`url(${img})`, paddingTop:'200px', paddingBottom:"200px",opacity:"0.9"}}>
 
-            <div  className="col-lg-3 col-md-6  col-sm-12 col-xs-12 col-xl-3 " style={{backgroundColor: '#91BB7F',padding:'20px',position: "center",}} >
-                  <h2 className="text-center">Login</h2>
-                <Form onSubmit={this.handleSubmit}>
-                <Form.Group >
-                    <Form.Label  >Username</Form.Label>
-                    <Form.Control id="email" type="text" placeholder="Enter email" onChange={this.handleChange}/>
-                </Form.Group>
-                <Form.Group >
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control id="password" type="password" placeholder="Password" onChange={this.handleChange}/>
-                </Form.Group>
-                <button className="btn" type="submit" style={{backgroundColor:"#11643D",color:"white"}} >Login
-                </button>
-                </Form>
-                <Link style={{color:"#233C1D"}} onClick={this.signup}>Not a member? Sign Up here
-                </Link>
+        return(
+          <Jumbotron className="row justify-content-center logbackground">
+            <div  className="col-lg-3 col-md-6  col-sm-12 col-xs-12 col-xl-3 adjuster " >
+                  <div ><h2 className="text-left">Login</h2></div>
+                <form onSubmit={this.handleSubmit}>
+                <div className="form-group border-bottom border-dark">
+                <label htmlFor="name">Username</label>
+                <input type="text" className="form-control" id="email" style={{background:'none', border:"none"}} onChange={this.handleChange}/>
+                  
+                </div>
+                <div  className=" form-group border-bottom border-dark">
+                <label htmlFor="name">Password</label>
+                    <input type="text" id="password"   type="password" className="form-control" style={{background:'none', border:"none"}} onChange={this.handleChange}/>
+                </div>
+                <div className="row justify-content-start" style={{paddingLeft:"15px"}}>
+                <button className="btn" type="submit" style={{backgroundColor:"#11643D",color:"white"}} >Login</button>
+                </div>
+                </form>
+                <div className="row justify-content-end">
+                <Link style={{color:"#233C1D"}} onClick={this.signup}>Not a member? Sign Up here</Link>
+                </div>
             </div>
           </Jumbotron>
    

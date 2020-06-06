@@ -1,0 +1,82 @@
+.text{
+    color: red
+}
+
+
+.logbackground{
+    background-image: url("https://www.talk-works.org.uk/wp-content/themes/talkworks/img/TalkWorksIllustrations-11.png");
+
+    background-image: url("https://www.talk-works.org.uk/wp-content/themes/talkworks/img/TalkWorksIllustrations-12.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.adjuster{
+    padding: 100px 0;
+    position: absolute;
+    z-index: 21;
+    background: '#91BB7F';
+    position: "center"
+}
+
+.list{
+    padding-left: 0px;
+    list-style: none;
+    padding-top: 20px;
+}
+
+.link-btn{
+    background-color: white;
+    color: black;
+    border: none;
+
+
+}
+.delete-btn{
+    background-color: white;
+    color: black;
+    border: red;
+
+
+}
+
+.container-Jumbotron{
+    background-color:white;
+    padding-top: 20px;
+
+}
+.container{
+    background-color:white;
+    position: center;
+}
+
+.padding-div{
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.new-post-button{
+    background-color: #11643D;
+    border : none;
+    height: 40px;
+    color: white;
+}
+
+.span-top{
+    padding-top: 10px;
+}
+.span-bottom{
+    padding-bottom: 10px;
+}
+.react-bootstrap-table-pagination-list{
+    background-color:  #11643D;
+    color: white;
+}
+
+.iconImage{
+    width : 80px;
+    height: 80px;
+}

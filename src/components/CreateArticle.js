@@ -20,11 +20,7 @@ export default class CreateArticle extends Component{
         this.setState({[e.target.id]: e.target.value})
         
     }
-    // handleSubmit(e){
-    //     e.preventDefault();
-    //     this.props.createArticle(this.state)
-        
-    // }
+ 
     chooseFile = (e) => {
         this.setState({file : e.target.files[0]});
           
