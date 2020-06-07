@@ -37,27 +37,29 @@ console.log("props",this.props)
           text: '',
           dataField: 'username',
           width: 150,
+          style: { color: 'green' },
+          headerStyle: { width: '70px' }
         },
         {
           text: 'title',
           dataField: 'title',
-          width: 300,
+          width: 400,
+          style: { fontWeight: 'bold' },
         },
-        {
-          text: 'Topic',
-          dataField: 'label',
-          width: 200,
-        },
+       
         {
           text: 'Likes',
           dataField: 'likes',
           width: 100,
+          headerStyle: { width: '50px' }
         },
         {
           text: 'Date',
           dataField: 'dateCreated',
           width: 150,
           order: 'desc',
+          
+          headerStyle: { width: '100px' }
         }
       ],
 
