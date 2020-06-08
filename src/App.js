@@ -22,6 +22,8 @@ import createThread from './components/createThread'
 import UserMyposts from './components/UserMyposts'
 import DataTablePage from './components/DataTable'
 import editArticle from './components/editArticle'
+import NetworkError from './components/NetworkError';
+import Header from './components/Header'
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
     <Router>
     <AuthProvider>
     <div >
+      <Header/>
       <NavBar/>
       
       <Route exact path="/" component={Home}/>
@@ -45,6 +48,7 @@ function App() {
       <Route path="/createArticle" component={createArticle}/>
       <Route path="/createThread" component={createThread}/>
       <Route path="/myPosts" component={UserMyposts}/>
+      <Route path="/NetworkError" component={NetworkError}/>
       <Route path="/DataTable" component={DataTablePage}/>
       <Route path="/editArticle" component={editArticle}/>
     </div>

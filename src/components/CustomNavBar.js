@@ -8,7 +8,7 @@ export default class CustomNavBar extends Component{
   
     render(){
         return(
-        <Navbar expanded={this.state.expanded} className="navbar-default" expand="sm"   sticky="top" style={{backgroundColor:"#053D2B", height:"80px"}}>
+        <Navbar expanded={this.state.expanded} className="navbar-default" expand="sm"   sticky="top" style={{backgroundColor:"#3F481D"}}>
             <Navbar.Brand href="#home" style={{color:"#041114"}}><h5>Mental Health First</h5></Navbar.Brand>
             <Navbar.Toggle onClick={()=>this.setState({expanded : this.state.expanded? false : true})} aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">

@@ -11,7 +11,8 @@ export default class editArticle extends Component{
             title: "",
             content: "",
             file : {},
-            username: "Admin"
+            username: "Admin",
+            test: "test"
         
         }
         this.handleChange = this.handleChange.bind(this);

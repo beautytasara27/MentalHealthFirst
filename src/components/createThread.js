@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import { Container, Button,Form , Jumbotron} from 'react-bootstrap';
 import axios from 'axios'
+import './styler.css'
 
 export default class createThread extends Component{
     constructor(props){
@@ -31,7 +32,7 @@ export default class createThread extends Component{
     render(){
         return(
             <Container>
-                <Jumbotron>
+                <Jumbotron className="container-Jumbotron">
                 <Form onSubmit={this.post}>
                 <Form.Group >
                     <Form.Label>Title</Form.Label>

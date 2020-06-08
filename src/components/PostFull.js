@@ -7,17 +7,29 @@ import axios from 'axios'
 export default class PostFull extends Component{
   constructor(props){
         super(props);
-        console.log("myprops", this.props)
         this.state={
-          post:this.props.location.data,
-          expanded: false
+          expanded: false,
+          articles: [],
+          article: {}
         }
+   
         
     }
+    componentDidMount(){
+      axios.get( `http://localhost:7003/v1/articles/getById/${this.props.match.params.postId}`).then(res=> { 
+        console.log(res.data)
+       // this.setState({articles: res.data})
+       this.setState({article : res.data})
+    }).
+    catch((error)=>{console.log(error)})
+     
+      
+  
+}
   
     render(){
        
-        console.log(this.state.post)
+      //  const article = this.state.articles.find(element => element.id == this.state.post.id)
         return(
             <Jumbotron style={{backgroundColor:'white', paddingTop: "20px", listStyle:"none"}}>
             <Container style={{backgroundColor: 'white',position: "center"}}>
@@ -29,11 +41,11 @@ export default class PostFull extends Component{
               </svg>
               </div>
               <div className="row justify-content-between" style={{padding:"20px"}}>
-              <Card.Text >{this.state.post.username}</Card.Text>
-              <Card.Text>{this.state.post.dateCreated}</Card.Text>
+              <Card.Text >{this.state.article.username}</Card.Text>
+              <Card.Text>{this.state.article.dateCreated}</Card.Text>
               </div>
             <Row>
-              <Card.Title style={{padding:'20px'}} className="text-center">{this.state.post.title}</Card.Title>
+              <Card.Title style={{padding:'20px'}} className="text-center">{this.state.article.title}</Card.Title>
               
               <div>
               {this.state.expanded? (<Card>
@@ -49,7 +61,7 @@ export default class PostFull extends Component{
             <Card.Img variant="top" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" />
            
               <Card.Text className="text-justify">
-               {this.state.post.content}
+               {this.state.article.content}
               </Card.Text>
             </Card.Body>
           </Card>
@@ -62,7 +74,7 @@ export default class PostFull extends Component{
  deleteArticle = (e) =>{
   e.preventDefault();
   //code to delete
-  axios.delete(`http://localhost:7003/v1/articles/${this.state.post.id}`)
+  axios.delete(`http://localhost:7003/v1/articles/${this.state.article.id}`)
       .then(res => {
         console.log(res);
         console.log(res.data);
