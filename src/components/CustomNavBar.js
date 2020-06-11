@@ -2,14 +2,22 @@ import React, {Component} from 'react'
 import {Navbar, Nav, Row, NavDropdown} from  'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {AuthConsumer} from './Context/AuthContext'
+import { Modal } from 'react-bootstrap';
+import Login from './Login'
 
 export default class CustomNavBar extends Component{
-    state = {expanded:false}
+    state = {
+        expanded:false,
+        modal: false
+    }
+    UnmountModal = () => {
+        this.setState({modal : !this.state.modal})
+    }
   
     render(){
         return(
+        <div>
         <Navbar expanded={this.state.expanded} className="navbar-default" expand="sm"   sticky="top" style={{backgroundColor:"#3F481D"}}>
-            <Navbar.Brand href="#home" style={{color:"#041114"}}><h5>Mental Health First</h5></Navbar.Brand>
             <Navbar.Toggle onClick={()=>this.setState({expanded : this.state.expanded? false : true})} aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 
@@ -32,7 +40,7 @@ export default class CustomNavBar extends Component{
                         </NavDropdown>
                         </Nav>
                         ) : 
-                        (<Link to={'/login'} style={{color:"white"}} className="nav-link" onClick={() => this.setState({expanded:false})} > <h5>Login </h5></Link>)}
+                        (<button  style={{backgroundColor:"#3F481D", color:"white", border:"none"}} className="nav-link" onClick={() => this.setState({expanded:false,modal: !this.state.modal })} > <h5>Login </h5></button>)}
                     </Nav>
                     )
                     
@@ -41,6 +49,11 @@ export default class CustomNavBar extends Component{
                
             </Navbar.Collapse>
         </Navbar>
+        
+      <Modal 
+      centered
+      show={this.state.modal} onHide={()=>this.setState({modal:!this.state.modal})}><Login pass = {this.props} unmount={this.UnmountModal}/></Modal>
+      </div>
         )
     }
 }

@@ -1,3 +1,92 @@
+export const Users = [
+  {
+    id: 1,
+    name : "beauty",
+    role : "user",
+    password: 'pass123',
+    email: "beauty@gmail.com"
+  },
+  {
+    id: 2,
+    name : "angels",
+    role : "user",
+    password: 'angelo123',
+    email: "ngls@gmail.com"
+  },
+  {
+    id: 3,
+    name : "tanny",
+    role : "user",
+    password: 'tanaka123',
+    email: "tori@gmail.com"
+  },
+  {
+    id: 1,
+    name : "beauty",
+    role : "user",
+    password: 'pass123',
+    email: "beauty@gmail.com"
+  },
+  {
+    id: 2,
+    name : "angels",
+    role : "user",
+    password: 'angelo123',
+    email: "ngls@gmail.com"
+  },
+  {
+    id: 3,
+    name : "tanny",
+    role : "user",
+    password: 'tanaka123',
+    email: "tori@gmail.com"
+  },
+  {
+    id: 1,
+    name : "beauty",
+    role : "user",
+    password: 'pass123',
+    email: "beauty@gmail.com"
+  },
+  {
+    id: 2,
+    name : "angels",
+    role : "user",
+    password: 'angelo123',
+    email: "ngls@gmail.com"
+  },
+  {
+    id: 3,
+    name : "tanny",
+    role : "user",
+    password: 'tanaka123',
+    email: "tori@gmail.com"
+  },
+  {
+    id: 1,
+    name : "beauty",
+    role : "user",
+    password: 'pass123',
+    email: "beauty@gmail.com"
+  },
+  {
+    id: 2,
+    name : "angels",
+    role : "user",
+    password: 'angelo123',
+    email: "ngls@gmail.com"
+  },
+  {
+    id: 3,
+    name : "tanny",
+    role : "user",
+    password: 'tanaka123',
+    email: "tori@gmail.com"
+  }
+]
+
+
+
 export const stories = [
     {
       id: 1,
@@ -176,7 +265,7 @@ export const stories = [
       id : 6,
       label : "relationships",
       title : "hjdhd hjsbbaknndnld jasbsljsadfdsnb dkbsd bdbksa s djbsi shbjdba",
-      question : "commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
+      question : "zcommodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes",
       author : "authorname",
       img : "",
       likes : 40

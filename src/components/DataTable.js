@@ -56,10 +56,10 @@ console.log("props",this.props)
         {
           text: 'Date',
           dataField: 'dateCreated',
-          width: 150,
+          width: 20,
           order: 'desc',
           
-          headerStyle: { width: '100px' }
+          headerStyle: { width: '200px' }
         }
       ],
 

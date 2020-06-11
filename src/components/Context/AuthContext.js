@@ -6,11 +6,12 @@ import { generateUserDocument } from '../config/fbConfig'
 const AuthContext = React.createContext({user: null})
 
 class AuthProvider extends React.Component {
-  state = { user: null}
+  state = { user: null, isAdmin: false}
   constructor() {
     super()
     this.login = this.login.bind(this)
     this.logout = this.logout.bind(this)
+    
   }
 
   login(email, password) {
@@ -54,7 +55,7 @@ class AuthProvider extends React.Component {
 
   render() {
     return (
-      <AuthContext.Provider value={{isAuth:this.state.user, login:this.login, logout: this.logout}}>
+      <AuthContext.Provider value={{isAuth:this.state.user, login:this.login, logout: this.logout, isAdmin: this.state.isAdmin}}>
         {this.props.children}
       </AuthContext.Provider>
     )

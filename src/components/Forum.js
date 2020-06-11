@@ -5,6 +5,8 @@ import { Button } from 'react-bootstrap';
 import axios from 'axios'
 import './styler.css'
 import Loader from 'react-loader'
+import {AuthConsumer} from './Context/AuthContext'
+import Sidebar from './SideBar'
 
 export default class Forum extends Component {
   constructor(props) {
@@ -16,7 +18,7 @@ export default class Forum extends Component {
 
   }
   componentDidMount() {
-    axios.get("http://localhost:7003/v1/posts").then(res => {
+    axios.get("https://forumcoreapplication.herokuapp.com/v1/posts").then(res => {
 
       this.setState({ posts: res.data, loaded: true })
       console.log("my posts", this.state.posts)
@@ -33,6 +35,12 @@ export default class Forum extends Component {
   }
   render() {
     return (
+      <div className="row">
+      <AuthConsumer>
+          {({ isAdmin }) => (<div>
+              <div>{isAdmin ? <Sidebar /> : null}</div>
+          </div>)}
+      </AuthConsumer>
       <div className="container border primary">
         <hr />
         <div className="row justify-content-between align-items-center padding-div">
@@ -46,6 +54,7 @@ export default class Forum extends Component {
         <Loader loaded={this.state.loaded}>
           <DatatablePage tableData={this.state.posts} props={this.props} />
         </Loader>
+      </div>
       </div>
     )
   }

@@ -11,6 +11,8 @@ import Loader from 'react-loader'
 import NetworkError from './NetworkError'
 import { Articles } from './Context/DataStore'
 import { CardText } from 'react-bootstrap/Card'
+import {AuthConsumer} from './Context/AuthContext'
+import SideBar from '../components/SideBar'
 
 export const responsive = {
     superLargeDesktop: {
@@ -41,14 +43,14 @@ class Home extends Component {
         }
     }
     componentDidMount() {
-        axios.get("http://localhost:7003/v1/articles").then(res => {
+        axios.get("https://forumcoreapplication.herokuapp.com/v1/articles").then(res => {
 
             console.log(res.data)
             this.setState({ Articles: res.data, loaded: true })
         }).
             catch((error) => {
                 console.log(error)
-                this.props.history.push({pathname: '/NetworkError'})
+                this.props.history.push({ pathname: '/NetworkError' })
 
             })
     }
@@ -87,7 +89,6 @@ class Home extends Component {
         const cardDeckk = this.state.Articles.slice(1).map(post => {
             return (
                 <Container key={post.id}>
-                    <li className="list">
                         <Container className="container">
                             <button className="link-btn" onClick={this.handleClick.bind(this, post)} >
                                 <Card className='mx-auto' border="Secondary" >
@@ -105,7 +106,6 @@ class Home extends Component {
                                 </Card>
                             </button>
                         </Container>
-                    </li>
 
                 </Container>
             )
@@ -114,12 +114,18 @@ class Home extends Component {
         return (
             <Loader loaded={this.state.loaded}>
                 <div>
-
-                    <Jumbotron className="fluid border-bottom secondary container-Jumbotron" >
-                        <div>
-                            <ul>{postList}</ul>
-                        </div>
-                    </Jumbotron>
+                    <div className="row">
+                        <AuthConsumer>
+                            {({ isAdmin }) => (<div>
+                                <div>{isAdmin ? <SideBar /> : null}</div>
+                            </div>)}
+                        </AuthConsumer>
+                        <Jumbotron className="fluid border-bottom secondary container-Jumbotron" >
+                            <div>
+                                <ul>{postList}</ul>
+                            </div>
+                        </Jumbotron>
+                    </div>
 
                     <Container>
                         <h3 className="display-4">Recent Posts</h3>

@@ -3,6 +3,8 @@ import {stories} from '../data/data'
 import{Card, Button, Jumbotron, Container, ListGroup, Row} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import {AuthConsumer} from './Context/AuthContext'
+import Sidebar from "./SideBar"
 
 export default class PostFull extends Component{
   constructor(props){
@@ -12,11 +14,9 @@ export default class PostFull extends Component{
           articles: [],
           article: {}
         }
-   
-        
     }
     componentDidMount(){
-      axios.get( `http://localhost:7003/v1/articles/getById/${this.props.match.params.postId}`).then(res=> { 
+      axios.get( `https://forumcoreapplication.herokuapp.com/v1/articles/getById/${this.props.match.params.postId}`).then(res=> { 
         console.log(res.data)
        // this.setState({articles: res.data})
        this.setState({article : res.data})
@@ -31,7 +31,14 @@ export default class PostFull extends Component{
        
       //  const article = this.state.articles.find(element => element.id == this.state.post.id)
         return(
+         
             <Jumbotron style={{backgroundColor:'white', paddingTop: "20px", listStyle:"none"}}>
+            <div className="row">
+            <AuthConsumer>
+                {({ isAdmin }) => (<div>
+                    <div>{isAdmin ? <Sidebar /> : null}</div>
+                </div>)}
+            </AuthConsumer>
             <Container style={{backgroundColor: 'white',position: "center"}}>
             <Card className='mx-auto' border="Secondary" style={{ width: '50rem',float:'none' }}>
             <Card.Body>
@@ -66,6 +73,7 @@ export default class PostFull extends Component{
             </Card.Body>
           </Card>
           </Container>
+          </div>
           </Jumbotron>
     )
     }   
@@ -74,7 +82,7 @@ export default class PostFull extends Component{
  deleteArticle = (e) =>{
   e.preventDefault();
   //code to delete
-  axios.delete(`http://localhost:7003/v1/articles/${this.state.article.id}`)
+  axios.delete(`https://forumcoreapplication.herokuapp.com/v1/articles/${this.state.article.id}`)
       .then(res => {
         console.log(res);
         console.log(res.data);

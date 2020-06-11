@@ -24,6 +24,7 @@ import DataTablePage from './components/DataTable'
 import editArticle from './components/editArticle'
 import NetworkError from './components/NetworkError';
 import Header from './components/Header'
+import ManageuserAccounts from './components/ManageuserAccounts'
 
 function App() {
   return (
@@ -33,7 +34,6 @@ function App() {
     <div >
       <Header/>
       <NavBar/>
-      
       <Route exact path="/" component={Home}/>
       <Route exact path="/forum" component={Forum}/>
       <Route path="/login" component={Login}/>
@@ -51,6 +51,7 @@ function App() {
       <Route path="/NetworkError" component={NetworkError}/>
       <Route path="/DataTable" component={DataTablePage}/>
       <Route path="/editArticle" component={editArticle}/>
+      <Route path="/accounts" component={ManageuserAccounts}/>
     </div>
     </AuthProvider>
     </Router>
