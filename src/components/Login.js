@@ -60,7 +60,7 @@ export default class Login extends Component {
           </div>
 
           <div className="row justify-content-start" style={{ paddingLeft: "15px" }}>
-            <button className="btn" type="submit" style={{ backgroundColor: "#11643D", color: "white" }} >Login</button>
+            <button className="btn btn-green-moon" type="submit" style={{ backgroundColor: "#11643D", color: "white" }} >Login</button>
           </div>
         </form>
         <div className="row justify-content-end">

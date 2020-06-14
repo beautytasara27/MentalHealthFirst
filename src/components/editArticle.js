@@ -71,7 +71,7 @@ export default class editArticle extends Component {
                             <Form.Label>Content</Form.Label>
                             <Form.Control id="content" type="textarea" defaultValue={this.props.location.data.body} onChange={this.handleChange} style={{ height: '300px' }} />
                         </Form.Group>
-                        <Button variant="primary" type="submit" style={{ color: "white" }} >Publish
+                        <Button className="btn-green-moon" variant="primary" type="submit" style={{ color: "white" }} >Publish
                 </Button>
                     </Form>
                 </Jumbotron>

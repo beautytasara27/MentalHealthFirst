@@ -1,108 +1,97 @@
 import React, { Component } from 'react'
-import styler from './styler.css';
 import { Jumbotron, Container, Row, Col, Button, Table } from 'react-bootstrap'
 import './styler.css'
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory, {
-  PaginationProvider, PaginationListStandalone,
-  PaginationTotalStandalone, SizePerPageDropdownStandalone
-} from 'react-bootstrap-table2-paginator';
+import Pagination from "react-js-pagination";
 
+const colors = ['bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-dark', 'bg-light'];
 class DatatablePage extends Component {
   constructor(props) {
     super(props);
-
-console.log("props",this.props)
-  }
-  rowEvents = {
-    onClick: (e, row, rowIndex) => {
-
-      this.props.props.history.push({ pathname: 'forum/' + row.id })
-      console.log("row is", row)
+    this.state={
+      currentPage:1,
+      postsPerPage:3
     }
-  };
+
+    console.log("props", this.props)
+  }
+
+  handleClick = (rowId) => {
+    this.props.props.history.push({ pathname: 'forum/' + rowId })
+    console.log("row is", rowId)
+  }
+  handlePageChange = (pageNumber) => {
+
+    this.setState({ currentPage: pageNumber });
+}
+
+
+ numberFromText = (text) =>{
+  // numberFromText("AA");
+  const charCodes =text.charCodeAt(0)
+  return parseInt(charCodes, 10) % colors.length;
+}
+
+
+
+
+
 
   render() {
-    const dataRows = this.props.tableData
-    //console.log(props.location.data)
-    const paginationOption = {
-      custom: true,
-      totalSize: dataRows.length
-    }
+    const indexOfLastPost = this.state.currentPage * this.state.postsPerPage
+        const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage
+        const currentPosts = this.props.data.slice(indexOfFirstPost, indexOfLastPost)
 
-
-    const data = {
-      columns: [
-        {
-          text: '',
-          dataField: 'username',
-          width: 150,
-          style: { color: 'green' },
-          headerStyle: { width: '70px' }
-        },
-        {
-          text: 'title',
-          dataField: 'title',
-          width: 400,
-          style: { fontWeight: 'bold' },
-        },
-       
-        {
-          text: 'Likes',
-          dataField: 'likes',
-          width: 100,
-          headerStyle: { width: '50px' }
-        },
-        {
-          text: 'Date',
-          dataField: 'dateCreated',
-          width: 20,
-          order: 'desc',
-          
-          headerStyle: { width: '200px' }
-        }
-      ],
-
-      rows: dataRows,
-      style: { border: "none" }
-    }
-
-    //
-    return (
-
-      <PaginationProvider
-        pagination={paginationFactory(paginationOption)}>
-        {
-          ({
-            paginationProps,
-            paginationTableProps
-          }) => (
-              <div className="table table-borderless table-striped ">
-                <div className="row justify-content-between" style={{ paddingRight: "30px", paddingLeft: "15px" }}>
-                  <SizePerPageDropdownStandalone
-                    {...paginationProps}
-                  />
-
-                  <MySearch {...this.props.searchProps} />
-                </div>
-                <BootstrapTable
-                  hover
-                  responsive
-                  data={data.rows}
-                  columns={data.columns}
-                  keyField='id'
-                  rowEvents={this.rowEvents}
-                  {...paginationTableProps}
-                />
-                <div className="react-bootstrap-table-pagination-list" style={{ backgroundColor: "#233C1D" }}>
-                  <PaginationListStandalone
-                    {...paginationProps}
-                  />
-                </div>
+    const postList = currentPosts.map(post => {
+      return (
+        
+          <tr className= "text" onClick={this.handleClick.bind(this, post.id)}>
+            <td>
+              <div id="profile" className={colors[this.numberFromText(post.username)]} >
+                <div id='name'>{post.username.charAt(0)}</div>
               </div>
-            )
-        }
-      </PaginationProvider>
+              <div className="faint">{post.username}</div>
+            </td>
+            <td className="bold">{post.title}</td>
+            <td className="date">{"Likes: "+post.likes}</td>
+            <td className="date">{new Intl.DateTimeFormat("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "2-digit"
+            }).format(Date.parse(post.dateCreated))}</td>
+          </tr>
+       
+      )
+    })
+
+    return (
+     
+      <div className="table-responsive">
+          <table className="table table-hover">
+            <thead>
+              <tr >
+                <th scope="col"></th>
+                <th scope="col"> </th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {postList}
+            </tbody>
+          </table>
+        
+        <Pagination
+          activePage={this.state.currentPage}
+          itemsCountPerPage={3}
+          totalItemsCount={this.props.data.length}
+          pageRangeDisplayed={3}
+          itemClass="page-item"
+          linkClass="page-link"
+          onChange={this.handlePageChange.bind(this)}
+        />
+      
+      </div>
+
 
     );
   }

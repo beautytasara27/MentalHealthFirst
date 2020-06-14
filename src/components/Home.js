@@ -9,9 +9,8 @@ import "react-multi-carousel/lib/styles.css";
 import axios from 'axios'
 import Loader from 'react-loader'
 import NetworkError from './NetworkError'
-import { Articles } from './Context/DataStore'
 import { CardText } from 'react-bootstrap/Card'
-import {AuthConsumer} from './Context/AuthContext'
+import { AuthConsumer } from './Context/AuthContext'
 import SideBar from '../components/SideBar'
 
 export const responsive = {
@@ -89,23 +88,23 @@ class Home extends Component {
         const cardDeckk = this.state.Articles.slice(1).map(post => {
             return (
                 <Container key={post.id}>
-                        <Container className="container">
-                            <button className="link-btn" onClick={this.handleClick.bind(this, post)} >
-                                <Card className='mx-auto' border="Secondary" >
-                                    <div>
-                                        <Card.Text>{post.username}</Card.Text>
-                                        <Card.Text>{post.dateCreated}</Card.Text>
-                                    </div>
-                                    <Card.Img variant="top" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" />
+                    <Container className="container">
+                        <button className="link-btn" onClick={this.handleClick.bind(this, post)} >
+                            <Card className='mx-auto' border="Secondary" >
+                                <div>
+                                    <Card.Text>{post.username}</Card.Text>
+                                    <Card.Text>{post.dateCreated}</Card.Text>
+                                </div>
+                                <Card.Img variant="top" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" />
 
-                                    <Card.Body >
-                                        <Card.Title>{post.title}</Card.Title>
-                                        <Dotdotdot clamp={4}><p>{post.content}</p></Dotdotdot>
-                                    </Card.Body>
+                                <Card.Body >
+                                    <Card.Title>{post.title}</Card.Title>
+                                    <Dotdotdot clamp={4}><p>{post.content}</p></Dotdotdot>
+                                </Card.Body>
 
-                                </Card>
-                            </button>
-                        </Container>
+                            </Card>
+                        </button>
+                    </Container>
 
                 </Container>
             )
@@ -113,26 +112,28 @@ class Home extends Component {
 
         return (
             <Loader loaded={this.state.loaded}>
-                <div>
-                    <div className="row">
+                <div className="">
+                    <div className="row ">
                         <AuthConsumer>
                             {({ isAdmin }) => (<div>
                                 <div>{isAdmin ? <SideBar /> : null}</div>
                             </div>)}
                         </AuthConsumer>
-                        <Jumbotron className="fluid border-bottom secondary container-Jumbotron" >
-                            <div>
+                        <div className="fluid border-bottom secondary container-Jumbotron" >
+                            <div className="container">
                                 <ul>{postList}</ul>
                             </div>
-                        </Jumbotron>
-                    </div>
+                        </div>
+                        </div>
 
-                    <Container>
-                        <h3 className="display-4">Recent Posts</h3>
-                        <Carousel responsive={responsive}>
-                            {cardDeckk}
-                        </Carousel>
-                    </Container>
+                        <h3 className="display-4 texty" style={{ fontSize: '4vw' }}>Recent Posts</h3>
+                        <div className="container border-top secondary" style={{paddingTop:"30px"}}>
+
+                            <Carousel  responsive={responsive}>
+                                {cardDeckk}
+                            </Carousel>
+                        </div>
+                    
                 </div>
             </Loader>
 

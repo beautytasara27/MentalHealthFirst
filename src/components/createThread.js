@@ -51,7 +51,7 @@ export default class createThread extends Component {
                                 <Form.Label>Content</Form.Label>
                                 <Form.Control id="content" type="textarea" placeholder="Write your post here" onChange={this.handleChange} style={{ height: '300px' }} />
                             </Form.Group>
-                            <Button variant="primary" type="submit" style={{ color: "white" }} >Publish
+                            <Button className="btn-green-moon" variant="primary" type="submit" style={{ color: "white" }} >Publish
                             </Button>
                         </Form>
                     </Jumbotron>

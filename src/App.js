@@ -25,6 +25,7 @@ import editArticle from './components/editArticle'
 import NetworkError from './components/NetworkError';
 import Header from './components/Header'
 import ManageuserAccounts from './components/ManageuserAccounts'
+import NoMatch from './components/NoMatch';
 
 function App() {
   return (
@@ -51,7 +52,8 @@ function App() {
       <Route path="/NetworkError" component={NetworkError}/>
       <Route path="/DataTable" component={DataTablePage}/>
       <Route path="/editArticle" component={editArticle}/>
-      <Route path="/accounts" component={ManageuserAccounts}/>
+      <Route path="/accounts" component={ManageuserAccounts}/> 
+      <Route path="/nomatch" component={NoMatch}/>
     </div>
     </AuthProvider>
     </Router>

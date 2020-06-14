@@ -48,7 +48,7 @@ class ProfilePage extends React.Component {
                 </div>
               </div>
               <div className="row justify-content-end">
-                <button style={{ backgroundColor: "#11643D", border: "none", color: "white", height: "40px" }} onClick={()=>{this.setState({modal:!this.state.modal})}}>Change Password</button>
+                <button className="btn-green-moon" style={{ backgroundColor: "#11643D", border: "none", color: "white", height: "40px" }} onClick={()=>{this.setState({modal:!this.state.modal})}}>Change Password</button>
               </div>
             </div>
             <div>
@@ -59,7 +59,7 @@ class ProfilePage extends React.Component {
                 <Form >
                   <input id="newPassword" type="text" onChange={this.handleChange}></input>
                 </Form>
-                <button onCha>Submit</button>
+                <button className="btn-green-moon">Submit</button>
               </Modal>
             </div>
           </div>

@@ -6,7 +6,7 @@ import { generateUserDocument } from '../config/fbConfig'
 const AuthContext = React.createContext({user: null})
 
 class AuthProvider extends React.Component {
-  state = { user: null, isAdmin: false}
+  state = { user: null, isAdmin: true}
   constructor() {
     super()
     this.login = this.login.bind(this)

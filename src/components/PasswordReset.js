@@ -19,7 +19,7 @@ const PasswordReset = () => {
       .sendPasswordResetEmail(email)
       .then(() => {
         setEmailHasBeenSent(true);
-        setTimeout(() => {setEmailHasBeenSent(false)}, 3000);
+        setTimeout(() => { setEmailHasBeenSent(false) }, 3000);
       })
       .catch(() => {
         setError("Error resetting password");
@@ -55,13 +55,13 @@ const PasswordReset = () => {
             className="mb-3 w-full px-1 py-2"
           />
           <button
-            className="w-full bg-blue-400 text-white py-3" 
+            className="w-full bg-blue-400 text-white py-3"
           >
             Send me a reset link
           </button>
         </form>
         <Link
-         to ="/"
+          to="/"
           className="my-2 text-blue-700 hover:text-blue-800 text-center block"
         >
           &larr; back to sign in page
