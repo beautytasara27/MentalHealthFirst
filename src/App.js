@@ -22,7 +22,7 @@ import NetworkError from './components/NetworkError';
 import Header from './components/Header'
 import ManageuserAccounts from './components/ManageuserAccounts'
 import NoMatch from './components/NoMatch';
-import 'styler.css'
+import './components/styler.css'
 function App() {
   return (
     <div className="my-class">
