@@ -11,8 +11,6 @@ import Forum from './components/Forum'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 import PostFull from './components/PostFull'
-import PasswordReset from './components/PasswordReset';
-import ImageUpload from './components/ImageUpload';
 import ProfilePage from './components/ProfilePage'
 import Thread from './components/Thread'
 import createArticle from './components/CreateArticle'
@@ -24,10 +22,10 @@ import NetworkError from './components/NetworkError';
 import Header from './components/Header'
 import ManageuserAccounts from './components/ManageuserAccounts'
 import NoMatch from './components/NoMatch';
-
+import 'styler.css'
 function App() {
   return (
-    <div >
+    <div className="my-class">
     <Router>
     <AuthProvider>
     <div >
@@ -40,8 +38,6 @@ function App() {
       <Route path="/about" component={About}/>
       <Route path="/contact" component={Contact}/>
       <Route path="/signup" component={SignUp}/>
-      <Route path="/resetpassword" component={PasswordReset}/>
-      <Route path="/imageupload" component={ImageUpload}/>
       <Route path="/profilepage" component={ProfilePage}/>
       <Route path="/forum/:threadId" component={Thread}/>
       <Route path="/createArticle" component={createArticle}/>
