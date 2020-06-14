@@ -5,6 +5,7 @@ import { Container, Button, Form, Jumbotron } from 'react-bootstrap';
 import axios from 'axios'
 import { AuthConsumer } from './Context/AuthContext';
 import Sidebar from './SideBar'
+import './styler.css'
 
 export default class CreateArticle extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ export default class CreateArticle extends Component {
                     </div>)}
                 </AuthConsumer>
 
-                <Container >
+                <Container className="shadow">
                     <Jumbotron>
                         {this.state.isVisible === true}
                         <Form onSubmit={this.post}>
@@ -57,8 +58,10 @@ export default class CreateArticle extends Component {
                             </Form.Group>
                             <Form.Group >
                                 <Form.Label>Content</Form.Label>
-                                <Form.Control id="content" type="textarea" placeholder="Content" onChange={this.handleChange} style={{ height: '300px' }} />
-                            </Form.Group>
+                                <div className="comment">
+                                <textarea className="textinput" id="content"  placeholder="Content" onChange={this.handleChange} ></textarea>
+                                </div>
+                                </Form.Group>
                             <Button className="btn-green-moon" variant="primary" type="submit" style={{ color: "white" }} >Publish
                             </Button>
                         </Form>

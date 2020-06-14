@@ -9,9 +9,10 @@ class DatatablePage extends Component {
     super(props);
     this.state={
       currentPage:1,
-      postsPerPage:3
+      postsPerPage:3,
+      search:""
     }
-
+   
     console.log("props", this.props)
   }
 
@@ -32,14 +33,22 @@ class DatatablePage extends Component {
 }
 
 
+updateSearch =(e)=>{
+this.setState({search: e.target.value.substr(0,20)})
+}
 
 
 
 
   render() {
+    const filteredPosts = this.props.data.filter(
+      (post)=>{
+        return post.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+      }
+    )
     const indexOfLastPost = this.state.currentPage * this.state.postsPerPage
         const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage
-        const currentPosts = this.props.data.slice(indexOfFirstPost, indexOfLastPost)
+        const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost)
 
     const postList = currentPosts.map(post => {
       return (
@@ -66,7 +75,8 @@ class DatatablePage extends Component {
     return (
      
       <div className="table-responsive">
-          <table className="table table-hover">
+      <input type="text" id="myInput" onChange={this.updateSearch} placeholder="Search for Keywords.."></input>
+          <table className="table table-hover" >
             <thead>
               <tr >
                 <th scope="col"></th>
@@ -97,24 +107,6 @@ class DatatablePage extends Component {
   }
 }
 
-const MySearch = (props) => {
-  let input;
-  const handleClick = () => {
-    props.onSearch(input.value);
-  };
-  return (
-    <div>
-      <div className="row justify-content-end">
 
-        <input
-          style={{ backgroundColor: 'white', borderColor: "green" }}
-          ref={n => input = n}
-          type="text"
-        />
-        <button style={{ backgroundColor: "#11643D", color: "white" }} className="btn" onClick={handleClick}>Search</button>
-      </div>
-    </div>
-  );
-};
 
 export default DatatablePage;

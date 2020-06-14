@@ -87,7 +87,7 @@ export default class Signup extends Component {
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control id="confirm" type="password" placeholder="Confirm Password" onChange={this.handleChange} />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button className=" btn-green-moon" variant="primary" type="submit">
               Submit
                 </Button>
           </Form>

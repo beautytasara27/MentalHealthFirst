@@ -21,9 +21,10 @@ export default class PostFull extends Component {
       // this.setState({articles: res.data})
       this.setState({ article: res.data })
     }).
-      catch((error) => { console.log(error)
+      catch((error) => {
+        console.log(error)
         this.props.history.push('/nomatch')
-       })
+      })
 
   }
   deleteArticle = (e) => {
@@ -34,11 +35,20 @@ export default class PostFull extends Component {
         console.log(res);
         this.componentDidMount();
         console.log(res.data);
-      }).catch((err)=>{
+      }).catch((err) => {
         console.log(err)
         this.props.history.push('/nomatch')
       })
     this.setState({ expanded: false })
+  }
+  likeComment = (id) => {
+    console.log(id, "myid")
+    axios.get(`https://forumcoreapplication.herokuapp.com/v1/articles/${id}`).then(res => {
+      this.componentDidMount();
+      console.log(res.data);
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
   render() {
@@ -53,20 +63,23 @@ export default class PostFull extends Component {
             </div>)}
           </AuthConsumer>
           <Container style={{ backgroundColor: 'white', position: "center" }}>
-            <Card className='mx-auto' border="Secondary" style={{ width: '50rem', float: 'none' }}>
+            <Card className='mx-auto shadow' border="Secondary" style={{ width: '50rem', float: 'none' }}>
               <Card.Body>
                 <div className="row justify-content-end">
+
                   <svg onClick={() => this.setState({ expanded: !this.state.expanded })} className="bi bi-three-dots-vertical" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                   </svg>
                 </div>
                 <div className="row justify-content-between" style={{ padding: "20px" }}>
+
                   <Card.Text >{this.state.article.username}</Card.Text>
                   <Card.Text>{this.state.article.dateCreated}</Card.Text>
                 </div>
                 <Row>
-                  <Card.Title style={{ padding: '20px' }} className="text-center">{this.state.article.title}</Card.Title>
-
+                  <div  >
+                    <Card.Title style={{ padding: '20px' }} >{this.state.article.title}</Card.Title>
+                  </div>
                   <div>
                     {this.state.expanded ? (<Card>
                       <ListGroup>
@@ -79,10 +92,21 @@ export default class PostFull extends Component {
                 </Row>
 
                 <Card.Img variant="top" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" />
-
+                <div className="padding-top"></div>
                 <Card.Text className="text-justify">
                   {this.state.article.content}
                 </Card.Text>
+                <div>
+                  <div className="row justify-content-between padding-right">
+                    <p className="padding-left"> {this.state.article.likes + "  Likes"}</p>
+                    <div className="row justify-content-end">
+                      <svg onClick={this.likeComment.bind(this, this.state.article.id)} className="bi bi-heart-fill text-danger" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                      </svg>
+
+                    </div>
+                  </div>
+                </div>
               </Card.Body>
             </Card>
           </Container>

@@ -42,7 +42,7 @@ export default class Forum extends Component {
               <div>{isAdmin ? <Sidebar /> : null}</div>
             </div>)}
           </AuthConsumer>
-          <div className="container border primary text">
+          <div className="container border primary text shadow">
             <hr />
             <div className="row justify-content-between align-items-center padding-div">
               <div><h3 className="display-4 texty" >All Threads</h3></div>

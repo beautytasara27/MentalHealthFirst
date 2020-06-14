@@ -1,3 +1,17 @@
+
+.textinput {
+    float: left;
+    width: 100%;
+    min-height: 300px;
+    outline: none;
+    resize: none;
+    border: 1px solid grey;
+}
+.comment {
+    float: left;
+    width: 100%;
+    height: auto;
+}
 .padding-top{
     padding-top: 15px;
 }
@@ -130,12 +144,19 @@
         line-height: 100%;
       }
 }
+.textArea{
+    columns: 50;
+}
 .texty{
     font-size: 6vw;
 }
 @media (min-width: 768px) { 
     .texty{
         font-size: 3vw;
+    }
+    .textArea{
+        columns: 148;
+        
     }
 }
 

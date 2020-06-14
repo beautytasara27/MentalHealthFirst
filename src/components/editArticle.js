@@ -56,7 +56,7 @@ export default class editArticle extends Component {
                     isAdmin?<Sidebar/> : null
             )}
             </AuthConsumer>
-            <Container>
+            <Container className="shadow">
                 <Jumbotron>
                     {this.state.isVisible === true}
                     <Form onSubmit={this.post}>
@@ -69,8 +69,10 @@ export default class editArticle extends Component {
                         </Form.Group>
                         <Form.Group >
                             <Form.Label>Content</Form.Label>
-                            <Form.Control id="content" type="textarea" defaultValue={this.props.location.data.body} onChange={this.handleChange} style={{ height: '300px' }} />
-                        </Form.Group>
+                            <div className="comment">
+                            <textarea classname="textinput" id="content" defaultValue={this.props.location.data.body} onChange={this.handleChange} ></textarea>
+                            </div>
+                            </Form.Group>
                         <Button className="btn-green-moon" variant="primary" type="submit" style={{ color: "white" }} >Publish
                 </Button>
                     </Form>

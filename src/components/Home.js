@@ -12,6 +12,7 @@ import NetworkError from './NetworkError'
 import { CardText } from 'react-bootstrap/Card'
 import { AuthConsumer } from './Context/AuthContext'
 import SideBar from '../components/SideBar'
+import SearchSideBar from '../components/SearchSideBar'
 
 export const responsive = {
     superLargeDesktop: {
@@ -70,7 +71,11 @@ class Home extends Component {
                                 </div>
                                     <div className="col-lg-6 col-md-6  col-sm-12 col-xs-12 col-xl-6 ">
                                         <Card.Body><Card.Text>{post.username}</Card.Text>
-                                            <Card.Text>{post.dateCreated}</Card.Text>
+                                            <Card.Text className=" text-muted">{new Intl.DateTimeFormat("en-US", {
+                                                year: "numeric",
+                                                month: "long",
+                                                day: "2-digit"
+                                              }).format(Date.parse(post.dateCreated))}</Card.Text>
                                             <Card.Title>{post.title}</Card.Title>
                                             <Dotdotdot clamp={4}><p>{post.content}</p></Dotdotdot>
                                         </Card.Body>
@@ -93,7 +98,11 @@ class Home extends Component {
                             <Card className='mx-auto' border="Secondary" >
                                 <div>
                                     <Card.Text>{post.username}</Card.Text>
-                                    <Card.Text>{post.dateCreated}</Card.Text>
+                                    <Card.Text className="date text-muted">{new Intl.DateTimeFormat("en-US", {
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "2-digit"
+                                      }).format(Date.parse(post.dateCreated))}</Card.Text>
                                 </div>
                                 <Card.Img variant="top" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" />
 
@@ -116,7 +125,7 @@ class Home extends Component {
                     <div className="row ">
                         <AuthConsumer>
                             {({ isAdmin }) => (<div>
-                                <div>{isAdmin ? <SideBar /> : null}</div>
+                                <div>{isAdmin ? <SideBar /> : <SearchSideBar data={this.state.Articles} handleClick={this.handleClick}/>}</div>
                             </div>)}
                         </AuthConsumer>
                         <div className="fluid border-bottom secondary container-Jumbotron" >

@@ -40,8 +40,8 @@ export default class createThread extends Component {
                         <div>{isAdmin ? <Sidebar /> : null}</div>
                     </div>)}
                 </AuthConsumer>
-                <Container>
-                    <Jumbotron className="container-Jumbotron">
+                <Container className="shadow">
+                    <Jumbotron>
                         <Form onSubmit={this.post}>
                             <Form.Group >
                                 <Form.Label>Title</Form.Label>
@@ -49,7 +49,9 @@ export default class createThread extends Component {
                             </Form.Group>
                             <Form.Group >
                                 <Form.Label>Content</Form.Label>
-                                <Form.Control id="content" type="textarea" placeholder="Write your post here" onChange={this.handleChange} style={{ height: '300px' }} />
+                                <div className="comment">
+                                    <textarea className="textinput" id="content" placeholder="Write your post here" onChange={this.handleChange}> </textarea>
+                                </div>
                             </Form.Group>
                             <Button className="btn-green-moon" variant="primary" type="submit" style={{ color: "white" }} >Publish
                             </Button>
