@@ -1,7 +1,6 @@
+/* eslint-disable */
 import React, { Component } from 'react'
-import { stories } from '../data/data'
 import { Card, Button, Jumbotron, Container, ListGroup, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { AuthConsumer } from './Context/AuthContext'
 import Sidebar from "./SideBar"

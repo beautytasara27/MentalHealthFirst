@@ -1,8 +1,6 @@
 /* eslint-disable */
 /* eslint-disable */
 import React, { Component } from 'react'
-import { Jumbotron, Form, Container, Row, Col, Button } from 'react-bootstrap'
-import firebase from './config/fbConfig'
 import { Link } from 'react-router-dom'
 
 

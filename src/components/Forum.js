@@ -1,7 +1,6 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import DatatablePage from './DataTable'
-import { Threads } from '../data/data'
-import { Button } from 'react-bootstrap';
 import axios from 'axios'
 import './styler.css'
 import Loader from 'react-loader'

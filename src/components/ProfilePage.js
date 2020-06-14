@@ -1,7 +1,7 @@
+/* eslint-disable */
 import React from "react";
 import { AuthConsumer } from './Context/AuthContext'
-import { Button, Row, Form, Image, Modal } from 'react-bootstrap'
-import firebase from '../components/config/fbConfig'
+import { Modal } from 'react-bootstrap'
 
 
 class ProfilePage extends React.Component {

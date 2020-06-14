@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import {Jumbotron, Container, Row, Col, Button} from 'react-bootstrap'
 import './styler.css'

@@ -1,8 +1,7 @@
 /* eslint-disable */
 /* eslint-disable */
 import React, { Component } from 'react'
-import { Jumbotron, Form, Container, Row, Col, Button } from 'react-bootstrap'
-import firebase, { generateUserDocument } from './config/fbConfig'
+import { Jumbotron, Form, Container, Button } from 'react-bootstrap'
 import axios from 'axios'
 const isNumberRegx = /\d/;
 const specialCharacterRegx = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;

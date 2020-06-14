@@ -1,15 +1,11 @@
 /* eslint-disable */
 import React, { Component } from 'react'
-import { Row, Col, Container, Jumbotron, Card, Button, CardColumns, CardDeck } from 'react-bootstrap'
-import { BrowserRouter, Link, Switch } from 'react-router-dom'
-import { stories } from '../data/data'
+import {Container,Card} from 'react-bootstrap'
 import Dotdotdot from 'react-dotdotdot'
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import axios from 'axios'
 import Loader from 'react-loader'
-import NetworkError from './NetworkError'
-import { CardText } from 'react-bootstrap/Card'
 import { AuthConsumer } from './Context/AuthContext'
 import SideBar from '../components/SideBar'
 import SearchSideBar from '../components/SearchSideBar'

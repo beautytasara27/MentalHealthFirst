@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React , { Component } from 'react'
 import DatatablePage from './DataTable'
 import {Threads} from '../data/data'

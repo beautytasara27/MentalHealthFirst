@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Jumbotron, Container, Row, Col, Button} from 'react-bootstrap'
+import {Jumbotron, Container} from 'react-bootstrap'
 import './styler.css'
 
 export default class NoMatch extends Component{

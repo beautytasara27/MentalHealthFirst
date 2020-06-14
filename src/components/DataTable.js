@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Jumbotron, Container, Row, Col, Button, Table } from 'react-bootstrap'
 import './styler.css'
 import Pagination from "react-js-pagination";
 

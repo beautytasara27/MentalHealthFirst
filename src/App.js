@@ -1,12 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Contact from './components/Contact'
 import NavBar from './components/CustomNavBar'
 import Footer from './components/Footer'
 import Home from './components/Home'
-import ProtectedRoute from './components/ProtectedRoute'
 import { AuthProvider } from './components/Context/AuthContext';
 import About from './components/About'
 import Forum from './components/Forum'

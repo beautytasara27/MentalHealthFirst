@@ -1,6 +1,6 @@
+/* eslint-disable */
 import React, { Component } from 'react'
-import { Card, Jumbotron, Container, Row, Col, ListGroup, Button, Image } from 'react-bootstrap'
-import { Replies } from '../data/data'
+import { Card, Jumbotron, Container, Button, Image } from 'react-bootstrap'
 import axios from 'axios'
 import './styler.css'
 import Loader from 'react-loader'

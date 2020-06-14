@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import { Navbar, Nav, Row, NavDropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
