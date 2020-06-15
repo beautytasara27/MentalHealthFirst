@@ -52,7 +52,7 @@ class Home extends Component {
     }
     handleClick = (post) => {
         this.props.history.push({ pathname: '/PostFull/' + post.id })
-        console.log("post is", post)
+        console.log("post is this", post)
     }
     render() {
         //
