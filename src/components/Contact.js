@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { Component } from 'react'
-import { Jumbotron, Container } from 'react-bootstrap'
+import { Jumbotron } from 'react-bootstrap'
 import './styler.css'
 export default class Contact extends Component {
 
@@ -14,24 +14,23 @@ export default class Contact extends Component {
                     <p className=" text-center text" style={{ padding: '30px' }}  >You can use this form to contact us about anything or to provide feedback and suggestions.
 
                     If you are looking for support, please post on our our forum instead!</p>
-               
-                <div className="container" style={{ backgroundColor: '#91BB7F', position: "center", zIndex: 1, padding: '60px' }}>
-                    <h2 style={{ padding: '20px' }} className="text-center display-4 texty">Contact Us</h2>
-                    <form method="POST" data-netlify="true" id="contact-form" name="contact">
-                    <input type="hidden" name="form-name" value="contact" />
-                        <div className="  form-group border-bottom  border-dark">
-                            <label htmlFor="name">Name</label>
-                            <input type="text" id="name" name="name" className="form-control" style={{ background: 'none', border: "none" }} />
-                        </div>
-                        <div className=" form-group border-bottom border-dark">
-                            <label htmlFor="message">Message</label>
-                            <input type="text" name="message" id="message" style={{ background: 'none', border: "none" }} className="form-control" rows="2"></input>
-                        </div>
-                        <button type="submit" className="btn btn-green-moon">Submit</button>
-                    </form>
-                </div>
-                </div>
 
+                    <div className="container" style={{ backgroundColor: '#91BB7F', position: "center", zIndex: 1, padding: '60px' }}>
+                        <h2 style={{ padding: '20px' }} className="text-center display-4 texty">Contact Us</h2>
+                        <form method="post" name="contact">
+                            <input type="hidden" name="form-name" value="contact" />
+                            <div className="  form-group border-bottom  border-dark">
+                                <label htmlFor="name">Name</label>
+                                <input type="text" name="name" style={{ background: 'none', border: "none" }} />
+                            </div>
+                            <div className=" form-group border-bottom border-dark">
+                                <label htmlFor="message">Message</label>
+                                <input type="text" name="message" style={{ background: 'none', border: "none" }} className="form-control" rows="1"></input>
+                            </div>
+                            <button type="submit" className="btn btn-green-moon">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </Jumbotron >
 
         )
