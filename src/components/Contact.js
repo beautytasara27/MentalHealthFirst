@@ -22,8 +22,8 @@ export default class Contact extends Component {
           <p>
             <button type="submit">Send</button>
           </p>
-        </form>,
+        </form>)
 
-        )
+        
     }
 }
