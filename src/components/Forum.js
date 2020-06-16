@@ -44,12 +44,12 @@ export default class Forum extends Component {
           <div className="container border primary text shadow">
             <hr />
             <div className="row justify-content-between align-items-center padding-div">
-              <div><h3 className="display-4 texty" >All Threads</h3></div>
+              <div><h3 className="display-4 text" >All Threads</h3></div>
               <div style={{ paddingRight: "15px" }}>
                 <button className="button btn-sm" onClick={this.createPost}>Create New Post</button>
               </div>
             </div>
-            <p>Our forum members are people, maybe like yourself, who experience mental health difficulties or who have had them at some point in their life. Amongst our membership there is a wealth of expertise that has been developed through having to deal with mental health issues.</p>
+            <p className="card-item">Our forum members are people, maybe like yourself, who experience mental health difficulties or who have had them at some point in their life. Amongst our membership there is a wealth of expertise that has been developed through having to deal with mental health issues.</p>
             <span className="span-bottom"></span>
             <hr />
             <span className="span-top"></span>

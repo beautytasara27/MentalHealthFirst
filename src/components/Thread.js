@@ -90,7 +90,7 @@ export default class PostFull extends Component {
       return (
 
         <ul key={reply.id} style={{  listStyle: "none", paddingLeft: "0px" }}>
-          <Card className='mx-auto responsive shadow p-3 mb-5 bg-white rounded' >
+          <Card className='mx-auto card-item responsive shadow p-3 mb-5 bg-white rounded' >
             <Card.Body>
               <div className="row justify-content-end" >
                 <div>
@@ -103,11 +103,15 @@ export default class PostFull extends Component {
                 </svg>
               </div>
               <div className="border-bottom secondary row align-items-center " style={{ paddingLeft: '30px' }}>
-                <div className='col-md-1' > <div id="profile" className={colors[this.numberFromText(reply.username)]}  >
-                  <div id='name'>{reply.username.charAt(0)}</div>
+                <div> <div  className={`profile ${colors[this.numberFromText(reply.username)]} `} >
+                  <div className='name'>{reply.username.charAt(0)}</div>
                 </div></div>
-                <div className='col-md-8' > <Card.Title style={{ padding: '30px' }} >{reply.username}</Card.Title></div>
-                <div className='col-md-2' > <p className="text-muted">{reply.dateCreated}</p></div>
+                <div className='col-md-8' > <Card.Title className="username" style={{ padding: '30px' }} >{reply.username}</Card.Title></div>
+                <div className='col-md-2' > <p className="text-muted">{new Intl.DateTimeFormat("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "2-digit"
+                }).format(Date.parse(reply.dateCreated))}</p></div>
               </div>
               <Card.Text className="text-justify border-bottom secondary padding-top" style={{ paddingBottom: "30px" }}> {reply.content}
               </Card.Text>
@@ -139,7 +143,7 @@ export default class PostFull extends Component {
               </div>)}
             </AuthConsumer>
             <Container style={{ backgroundColor: "#F7F8F7" }}>
-              <Card className='mx-auto responsive shadow p-3 mb-5 bg-white rounded' border="Secondary">
+              <Card className='mx-auto responsive card-item shadow p-3 mb-5 bg-white rounded' border="Secondary">
                 <Card.Body>
                   <div className="row justify-content-end">
                     <div >
@@ -159,12 +163,12 @@ export default class PostFull extends Component {
 
                   <div className="border-bottom secondary row align-items-center" style={{ paddingLeft: '30px' }}>
                     <div className='col-md-1' > <Image roundedCircle className="row justify-content-center align-items-center" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIkAAACJCAMAAAAv+uv7AAAAMFBMVEXk5ueutLfd4OGpr7Ln6erGyszY29yxt7q9wsTBxsjh4+TN0dO2u77Q1NXU19nq7OzimcAIAAADEElEQVR4nO2b25qrIAxGOUROor7/24627pnaqhDqj/uC1RdYXxICEipEo9FoNBqNRqPRaDQaDOhugQWaSBljVJimG31IqN5JvRL9EOgWGxJ9lFq+oG009TNFottqrDJxmCqbDDsaa2DGimGh4A48HnTVVMiceSwpCpVEhnORGatqhCVDZCbgVWg8qtUtCi6SqJFfItpE2EwT6bH5odPlu0H3SBU6bGg7WGSphOzcgPNDHSMkc36AQeF4LEFBeVDPCgkyKJEZE43aCxUzJPPywWyF5LkiUhqICTs5sPQofkhkhJwlMzfhbVAQMWG2tdUEsY5LClZqxPF64hfsDGJDnli73z8Qi2cqEYHsx81kx+T/qZOitYMwYRymXxgQJkU9FrIZc871vyYIEZH79feKxdzrFJxPMB8aJSU7IkTmj3P+ORZ1uGf3Ngc621PHFMGs4QXuZwbuDoV5bNOIBrvCO95H4AUKr+PDquRB/vKBfRSv5Ld8C/Xg3Fzgr0EzS6XGHMFlqEC+uD4gn1RBdpINqQTVG/GcDxF0nUnGqiJOMlRv0PR0GQ9OcK7CPOVNZXbRb4HR2ldMzKuM6J39nRfL6Md75sVPl6BM380MRt00t15NaPqDbjEhCsGMQ+ddjHYhRue73hgl6gnR/DO9i48KeStYLW103RAE3oamMPqPNfPe2rT1g0LKEKkh/zvQdgr13IFGt/eo4Tg0MvaANjep3bcVKRntzbUupIqucR5c+SaFQsn19F9g3EVxmT0KrnC2LvEKF+qL7hzf8d/WLoWcU2sG3z7VYc3MUy7+i8otGqQcq8TSwwuJeF1Eni5lhUvmklLdqpSMe7KfvKBViD+mxqhgIlKiwntowlNhNRbCiSyT23yVa/vIB/lPAK/srHtolztXCFAPybjUwOZmIe8OrmBQwCbvXpKKJo9ccu4DK4QkLyhlw1i+SjokoP3mg2TTZ89wSklPXOokJ+O1Tq3kJPfk3LfJF5CYEYL3vlcSfbZOW3uanBcK8IT0wflITOl6DOfpUfWo9JeJRqPRaDT2+AFKvySqoM9dPAAAAABJRU5ErkJggg==" style={{ height: '50px', width: '50px', float: 'left', position: "left" }} /></div>
-                    <div className='col-md-8' > <Card.Title style={{ padding: '30px' }} >{this.state.post.username}</Card.Title></div>
+                    <div className='col-md-8' > <Card.Title className="username" style={{ padding: '30px' }} >{this.state.post.username}</Card.Title></div>
                     <div className='col-md-2' > <p className="text-muted">{this.state.post.dateCreated}</p></div>
 
                   </div>
 
-                  <Card.Title className="text-justify border-bottom secondary" style={{ padding: '30px' }}>
+                  <Card.Title className="card-item  border-bottom secondary" style={{ padding: '30px' }}>
                     {this.state.post.title}
                   </Card.Title>
                   <Card.Text className="text-justify ">

@@ -54,14 +54,14 @@ this.setState({search: e.target.value.substr(0,20)})
         
           <tr className= "text" onClick={this.handleClick.bind(this, post.id)}>
             <td>
-              <div id="profile" className={colors[this.numberFromText(post.username)]} >
-                <div id='name'>{post.username.charAt(0)}</div>
+              <div  className={`profile ${colors[this.numberFromText(post.username)]} `} >
+                <div className='name'>{post.username.charAt(0)}</div>
               </div>
-              <div className="faint">{post.username}</div>
+              <div className="username">{post.username}</div>
             </td>
-            <td className="bold">{post.title}</td>
-            <td className="date">{"Likes: "+post.likes}</td>
-            <td className="date">{new Intl.DateTimeFormat("en-US", {
+            <td className="bold card-item">{post.title}</td>
+            <td className="date username">{"Likes: "+post.likes}</td>
+            <td className="date username">{new Intl.DateTimeFormat("en-US", {
               year: "numeric",
               month: "long",
               day: "2-digit"
@@ -74,7 +74,7 @@ this.setState({search: e.target.value.substr(0,20)})
     return (
      
       <div className="table-responsive">
-      <input type="text" id="myInput" onChange={this.updateSearch} placeholder="Search for Keywords.."></input>
+      <input className="username" type="text" id="myInput" onChange={this.updateSearch} placeholder="Search for Keywords.."></input>
           <table className="table table-hover" >
             <thead>
               <tr >
@@ -94,7 +94,7 @@ this.setState({search: e.target.value.substr(0,20)})
           itemsCountPerPage={3}
           totalItemsCount={this.props.data.length}
           pageRangeDisplayed={3}
-          itemClass="page-item"
+          itemClass="page-item username"
           linkClass="page-link"
           onChange={this.handlePageChange.bind(this)}
         />

@@ -31,7 +31,7 @@ export default class Footer extends Component {
                             </ul>
                         </div>
                     </div>
-                    <div classNameName="navy container fluid">
+                    <div className=" container fluid navy">
                     <div className="row ">
                         <div className="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
                             <ul className="list-unstyled list-inline social text-center">
