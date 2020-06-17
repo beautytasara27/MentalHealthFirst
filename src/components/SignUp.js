@@ -1,7 +1,7 @@
 /* eslint-disable */
 /* eslint-disable */
 import React, { Component } from 'react'
-import { Jumbotron, Form, Container, Button } from 'react-bootstrap'
+import { Jumbotron, Form, Container, Button, Modal } from 'react-bootstrap'
 import axios from 'axios'
 const isNumberRegx = /\d/;
 const specialCharacterRegx = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
@@ -20,20 +20,21 @@ export default class Signup extends Component {
       passwordValidity: {
         minChar: null,
         number: null,
-        specialChar: null
-      }
+        specialChar: null,
+
+      },
+      confirmed: true,
+      confirm: ''
     }
 
   }
   handleChange = (e) => {
-    if (e.target.password === e.target.confirm) {
-      this.setState({
-        [e.target.id]: e.target.value
-      })
-    }
-    else {
-      alert("passwords do not match");
-    }
+    e.preventDefault()
+    this.setState({
+      confirmed: true,
+      [e.target.id]: e.target.value
+    })
+
   }
   handlePasswordChange = (password) => {
     this.setState({
@@ -55,44 +56,62 @@ export default class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    var access = {Username: 'uaa', Password: 'password@123'} 
+    if (this.state.password == this.state.confirm) {
+      axios({method:'post', url:'http://localhost:7004/api/users', data:{ email: this.state.email, name: this.state.displayName, password: this.state.password ,profilePicture : ""}, headers: {'Authorization': `Basic ${access}`}}).then((res) => {
+        console.log("toky",res)
+      this.props.history.push('/forum')
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
+    else {
+      this.setState({ confirmed: false })
+    }
 
-   axios.post('http://localhost:7004/api/users', {email: this.state.email, name: this.state.displayName, password: this.state.password}).then((res)=>{
-    this.props.history.push('/forum')
-   }).catch((error)=>{
-     console.log(error)
-   })
+
+
   }
 
   render() {
     return (
-      <Jumbotron style={{ backgroundColor: 'white', position: "center", padding: '200px' }}>
-        <Container style={{ backgroundColor: '#91BB7F', padding: '20px', position: "center", }}>
-          <h2 className="text-center">SignUp</h2>
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Group >
-              <Form.Label>displayName</Form.Label>
-              <Form.Control id="displayName" type="text" placeholder="Enter DisplayName" onChange={this.handleChange} />
-            </Form.Group>
-            <Form.Group >
-              <Form.Label>Email address</Form.Label>
-              <Form.Control id="email" type="email" placeholder="Enter email adress" onChange={this.handleChange} />
-            </Form.Group>
-            {this.state.passwordFocused && <PasswordStrengthIndicator validity={this.state.passwordValidity} />}
-            <Form.Group >
-              <Form.Label>Password</Form.Label>
-              <Form.Control id="password" type="password" value={this.state.password} onFocus={() => this.setState({ passwordFocused: true })} placeholder="Enter Password" onChange={e => this.handlePasswordChange(e.target.value)} />
-            </Form.Group>
-            <Form.Group >
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control id="confirm" type="password" placeholder="Confirm Password" onChange={this.handleChange} />
-            </Form.Group>
-            <Button className=" btn-green-moon" variant="primary" type="submit">
-              Submit
-                </Button>
-          </Form>
+      <Jumbotron>
+        <div className="container" style={{ backgroundColor: '#91BB7F', padding: '20px', position: "center", }}>
+          <h2 className="text-center texty ">SignUp</h2>
+          <div className="container" style={{ padding:"60px"}}>
+          <form onSubmit={this.handleSubmit} >
 
-        </Container>
-      </Jumbotron>
+            <div className=" form-group border-bottom border-dark">
+              <label>Username</label>
+              <input id="displayName" className="form-control" type="text" onChange={this.handleChange} style={{ background: 'none', border: "none" }} />
+            </div>
+            <div className=" form-group border-bottom border-dark">
+              <label>Email</label>
+              <input id="email" className="form-control" type="email" onChange={this.handleChange} style={{ background: 'none', border: "none" }} />
+            </div>
+            
+
+            {this.state.passwordFocused && <PasswordStrengthIndicator validity={this.state.passwordValidity} />}
+
+            <div className=" form-group border-bottom border-dark" >
+              <label>Password</label>
+              <input id="password" className="form-control" type="password" value={this.state.password} onFocus={() => this.setState({ passwordFocused: true })} onChange={e => this.handlePasswordChange(e.target.value)} style={{ background: 'none', border: "none" }} />
+            </div>
+            {this.state.confirmed ? null : <p>Passwords do not match</p>}
+            <div className=" form-group border-bottom border-dark">
+              <label>Confirm Password</label>
+              <input id="confirm" className="form-control" type="password" onChange={this.handleChange} style={{ background: 'none', border: "none" }} />
+            </div>
+            <button className=" btn-green-moon" variant="primary" type="submit">
+              Submit
+          </button>
+          </form>
+          </div>
+
+
+
+        </div>
+      </Jumbotron >
 
     )
   }

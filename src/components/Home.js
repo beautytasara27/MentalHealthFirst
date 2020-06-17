@@ -51,8 +51,8 @@ class Home extends Component {
             })
     }
     handleClick = (post) => {
-        this.props.history.push({ pathname: '/PostFull/' + post.id })
-        console.log("post is this", post)
+        this.props.history.push({ pathname: '/PostFull/' + post.id , state: post.dateCreated})
+        console.log("post is", post)
     }
     render() {
         //
@@ -86,6 +86,7 @@ class Home extends Component {
 
             )
         })
+       
         const cardDeckk = this.state.Articles.slice(1).map(post => {
             return (
                 <Container key={post.id}>
@@ -117,7 +118,7 @@ class Home extends Component {
 
         return (
             <Loader loaded={this.state.loaded}>
-                <div className="">
+                <div className="container-fluid">
                     <div className="row ">
                         <AuthConsumer>
                             {({ isAdmin }) => (<div>
@@ -132,7 +133,7 @@ class Home extends Component {
                         </div>
 
                         <h3 className="display-4 texty" style={{ fontSize: '4vw' }}>Recent Posts</h3>
-                        <div className="container border-top secondary" style={{paddingTop:"30px"}}>
+                        <div className="container-fluid border-top secondary" style={{paddingTop:"30px"}}>
 
                             <Carousel  responsive={responsive}>
                                 {cardDeckk}

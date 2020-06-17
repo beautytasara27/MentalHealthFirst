@@ -25,6 +25,7 @@ export default class Contact extends Component {
       
     render() {
         //col-lg-6 col-md-6  col-sm-12 col-xs-12 col-xl-6 "
+        const { name, email, message } = this.state;
         return (
             <Jumbotron className="row justify-content-center" style={{ backgroundColor: "white", position: "center", paddingBottom: '200px', paddingTop: "10px" }}>
                 <div className=" col-lg-8 col-md-12  col-sm-12 col-xs-12 col-xl-6 " >
@@ -34,15 +35,15 @@ export default class Contact extends Component {
 
                     <div className="container" style={{ backgroundColor: '#91BB7F', position: "center", zIndex: 1, padding: '60px' }}>
                         <h2 style={{ padding: '20px' }} className="text-center display-4 texty">Contact Us</h2>
-                        <form name="contact" method="post" >
-                            <input type="hidden" name="form-name" value="contact" />
+                        <form onSubmit={this.handleSubmit} >
+                            
                             <div className="  form-group border-bottom  border-dark">
                                 <label htmlFor="name">Name</label>
-                                <input type="text" name="name" style={{ background: 'none', border: "none" }} />
+                                <input type="text" name="name" value={name} onChange={this.handleChange} style={{ background: 'none', border: "none" }} className="form-control" rows="1"/>
                             </div>
                             <div className=" form-group border-bottom border-dark">
                                 <label htmlFor="message">Message</label>
-                                <input type="text" name="message" style={{ background: 'none', border: "none" }} className="form-control" rows="1"></input>
+                                <input type="text" name="message" value={message} onChange={this.handleChange} style={{ background: 'none', border: "none" }} className="form-control" rows="1"></input>
                             </div>
                             <button type="submit" className="btn btn-green-moon">Submit</button>
                         </form>
