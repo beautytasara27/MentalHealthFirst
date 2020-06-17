@@ -18,7 +18,7 @@ if: github.event.pull_request.merged
 with:
 ref: master
 
-steps:
-  -name: Nightly deploy
-   run: curl -X POST -d {} https://api.netlify.com/build_hooks/5eea5a852a0c9301f8cf6009
+
+-name: Nightly deploy
+ run: curl -X POST -d {} https://api.netlify.com/build_hooks/5eea5a852a0c9301f8cf6009
   
