@@ -33,7 +33,7 @@ export default class CustomNavBar extends Component {
                                             <Link to={'/contact'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Contact</h5> </Link>
                                             <Link to={'/about'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> About </h5></Link>
                                             <Link to={'/forum'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Forum </h5></Link>
-                                               <div classname="">
+                                               <div >
                                             {authTokens ? (
                                                 <div  className="inline float-right float row justify-content-end">
                                                     <Link className="nav-link" onClick={logout}>LogOut |</Link>
