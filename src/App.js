@@ -23,6 +23,8 @@ import Header from './components/Header'
 import ManageuserAccounts from './components/ManageuserAccounts'
 import NoMatch from './components/NoMatch';
 import './components/styler.css'
+
+import {testtt} from './components/testtt';
 function App() {
   return (
     <div className="my-class">
@@ -48,6 +50,7 @@ function App() {
       <Route path="/editArticle" component={editArticle}/>
       <Route path="/accounts" component={ManageuserAccounts}/> 
       <Route path="/nomatch" component={NoMatch}/>
+      <Route path="/navy" component={testtt}/>
     </div>
     </AuthProvider>
     </Router>

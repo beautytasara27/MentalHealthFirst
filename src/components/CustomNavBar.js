@@ -17,36 +17,36 @@ export default class CustomNavBar extends Component {
     }
 
     render() {
-        
+
         return (
             <div>
                 <Navbar expanded={this.state.expanded} className="navbar-default navy" expand="sm" sticky="top">
                     <Navbar.Toggle onClick={() => this.setState({ expanded: this.state.expanded ? false : true })} aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
+                    <Navbar.Collapse id="responsive-navbar-nav" >
 
                         <AuthConsumer>
                             {({ isAuth, authTokens, logout }) => (
-
-                                <Nav className="mr-auto " >
                                 <div className="row justify-content-between">
-                                    <Link to={'/'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Home </h5></Link>
-                                    <Link to={'/contact'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Contact</h5> </Link>
-                                    <Link to={'/about'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> About </h5></Link>
-                                    <Link to={'/forum'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Forum </h5></Link>
-
-                                    {authTokens ? (
-                                        <Nav>
-                                            <Link className="nav-link" onClick={logout}>LogOut |</Link>
-                                            <NavDropdown title="{isAuth.displayName}" id="collasible-nav-dropdown">
-                                                <NavDropdown.Item href="/ProfilePage">Profile Settings</NavDropdown.Item>
-                                                <NavDropdown.Divider />
-                                                <NavDropdown.Item className="nav-link" onClick={logout}>Logout</NavDropdown.Item>
-                                            </NavDropdown>
-                                        </Nav>
-                                    ) :
-                                        (<button  style={{backgroundColor:"transparent", color:"white", border:"none"}} className="nav-link" onClick={() => this.setState({expanded:false,modal: !this.state.modal })} > <h5>Login </h5></button>)}
-                                        </div>
-                                </Nav>
+                                    <Nav className="mr-auto " >
+                                        <div className="row justify-content-between">
+                                            <Link to={'/'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Home </h5></Link>
+                                            <Link to={'/contact'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Contact</h5> </Link>
+                                            <Link to={'/about'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> About </h5></Link>
+                                            <Link to={'/forum'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Forum </h5></Link>
+                                               <div classname="">
+                                            {authTokens ? (
+                                                <div  className="inline float-right float row justify-content-end">
+                                                    <Link className="nav-link" onClick={logout}>LogOut |</Link>
+                                                    <NavDropdown title="{isAuth.displayName}" id="collasible-nav-dropdown">
+                                                        <Link to="/ProfilePage" style={{ color: "white" }}>Profile Settings</Link>
+                                                    </NavDropdown>
+                                                </div>
+                                            ) :
+                                                (<button style={{ backgroundColor: "transparent", color: "white", border: "none" }} className="nav-link" onClick={() => this.setState({ expanded: false, modal: !this.state.modal })} > <h5>Login </h5></button>)}
+                                                </div> 
+                                                </div>
+                                    </Nav>
+                                </div>
                             )
 
                             }

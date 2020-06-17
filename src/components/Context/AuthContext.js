@@ -6,7 +6,7 @@ const AuthContext = React.createContext({ user: null })
 const existingTokens = (localStorage.getItem("tokens"));
 class AuthProvider extends React.Component {
 
-  state = { user: null, isAdmin: true, authTokens: '' }
+  state = { user: null, isAdmin: true, authTokens: existingTokens }
   constructor() {
     super();
 
@@ -21,6 +21,7 @@ class AuthProvider extends React.Component {
   }
   logout = () => {
     this.setTokens()
+    localStorage.removeItem('tokens');
   }
   getUser = () => {
     console.log("tokkv", this.state.authTokens)
