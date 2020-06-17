@@ -58,7 +58,7 @@ export default class Signup extends Component {
     e.preventDefault();
     var access = {Username: 'uaa', Password: 'password@123'} 
     if (this.state.password == this.state.confirm) {
-      axios({method:'post', url:'http://localhost:7004/api/users', data:{ email: this.state.email, name: this.state.displayName, password: this.state.password }, headers: {'Authorization': `Basic ${access}`}}).then((res) => {
+      axios({method:'post', url:'http://localhost:7004/api/users', data:{ email: this.state.email, name: this.state.displayName, password: this.state.password ,profilePicture : ""}, headers: {'Authorization': `Basic ${access}`}}).then((res) => {
         console.log("toky",res)
       this.props.history.push('/forum')
       }).catch((error) => {

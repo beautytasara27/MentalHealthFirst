@@ -25,7 +25,7 @@ export default class CustomNavBar extends Component {
                     <Navbar.Collapse id="responsive-navbar-nav">
 
                         <AuthConsumer>
-                            {({ isAuth, login, logout }) => (
+                            {({ isAuth, authTokens, logout }) => (
 
                                 <Nav className="mr-auto " >
                                 <div className="row justify-content-between">
@@ -34,10 +34,10 @@ export default class CustomNavBar extends Component {
                                     <Link to={'/about'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> About </h5></Link>
                                     <Link to={'/forum'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Forum </h5></Link>
 
-                                    {isAuth ? (
+                                    {authTokens ? (
                                         <Nav>
                                             <Link className="nav-link" onClick={logout}>LogOut |</Link>
-                                            <NavDropdown title={isAuth.displayName} id="collasible-nav-dropdown">
+                                            <NavDropdown title="{isAuth.displayName}" id="collasible-nav-dropdown">
                                                 <NavDropdown.Item href="/ProfilePage">Profile Settings</NavDropdown.Item>
                                                 <NavDropdown.Divider />
                                                 <NavDropdown.Item className="nav-link" onClick={logout}>Logout</NavDropdown.Item>
