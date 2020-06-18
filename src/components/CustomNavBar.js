@@ -24,19 +24,18 @@ export default class CustomNavBar extends Component {
                 <Navbar expanded={this.state.expanded} className="navbar-default navy" expand="sm" sticky="top">
                     <Navbar.Toggle onClick={() => this.setState({ expanded: this.state.expanded ? false : true })} aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" >
-
                         <AuthConsumer>
-                            {({ isAuth, authTokens, logout, currentUser }) => (
+                            {({ logout, currentUser }) => (
                                 <div className="row justify-content-between">
-                                    <Nav className="mr-auto " >
+                                    <Nav className="mr-auto" >
                                         <div className="row justify-content-between">
                                             <Link to={'/'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Home </h5></Link>
                                             <Link to={'/contact'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Contact</h5> </Link>
                                             <Link to={'/about'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> About </h5></Link>
                                             <Link to={'/forum'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Forum </h5></Link>
                                                <div >
-                                            {authTokens ? (
-                                                <div  className="inline float-right float row justify-content-end">
+                                            {currentUser ? (
+                                                <div  className=" inline row justify-content-end">
                                                     <Link to="" className="nav-link" onClick={logout}>LogOut |</Link>
                                                     <NavDropdown title={currentUser? currentUser.name : "Username"} id="collasible-nav-dropdown">
                                                         <Link to="/ProfilePage" style={{ color: "black" }}>Account Settings</Link>
