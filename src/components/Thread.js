@@ -1,12 +1,13 @@
 /* eslint-disable */
 import React, { Component } from 'react'
-import { Card, Jumbotron, Container, Button, Image } from 'react-bootstrap'
+import { Card, Jumbotron, Container, Button, Image, Modal, ListGroup } from 'react-bootstrap'
 import axios from 'axios'
 import './styler.css'
 import Loader from 'react-loader'
 import { AuthConsumer, AuthContext } from './Context/AuthContext'
 import Sidebar from './SideBar'
 import './styler.css'
+import Login from './Login'
 
 const colors = ['bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-dark', 'bg-light'];
 
@@ -16,7 +17,8 @@ export default class PostFull extends Component {
     super(props)
     this.state = {
       expandedThread: false,
-      expandedReply: false,
+      expandedReply: null,
+      expands: false,
       myid: null,
       text: '',
       replycard: false,
@@ -25,6 +27,7 @@ export default class PostFull extends Component {
       loaded: false,
       reload: false,
       repliesLength: 0,
+      modal :false
 
 
     }
@@ -90,12 +93,29 @@ export default class PostFull extends Component {
       console.log(err)
     })
   }
+  UnmountModal = () => {
+    this.setState({ modal: !this.state.modal })
+  }
   numberFromText = (text) => {
     // numberFromText("AA");
     const charCodes = text.charCodeAt(0)
     return parseInt(charCodes, 10) % colors.length;
   }
+  // <div>{this.context.currentUser.name == "admin" ? <div></div> : <div></div>
+  //   </div> : <div></div>}
+  //   ((this.context.currentUser.name == "admin" ? <div>{this.state.expandedReply ? (<div><Card style={{ width: "100px" }}><div> {this.context.currentUser.name == "admin" ? <button className="delete-btn" >Delete</button> : <button className="btn-green-moon" onClick={this.likePost.bind(this, this.state.post.id)}>Like</button>}</div>)
+  //   </Card></div>) : null}
+  //   </div>
+  //   <svg onClick={() => this.setState({ expandedThread: !this.state.expandedThread })} className="bi bi-three-dots-vertical" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  //     <path fillRule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+  //   </svg>
+  // </div> 
+  //      : null 
+  //      : null  
 
+  temp = (id) =>{
+      this.setState({expandedReply : id, expands:!this.state.expands})
+  }
 
   render() {
 
@@ -106,15 +126,19 @@ export default class PostFull extends Component {
         <ul key={reply.id} style={{ listStyle: "none", paddingLeft: "0px" }}>
           <Card className='mx-auto card-item responsive shadow p-3 mb-5 bg-white rounded' >
             <Card.Body>
+
               <div className="row justify-content-end">
-                <div >
-                  {this.state.expandedReply ? (<div><Card style={{ width: "100px" }}><div> {this.context.currentUser.name == "admin" ? <button className="delete-btn" >Delete</button> : <button className="btn-green-moon" onClick={this.likePost.bind(this, this.state.post.id)}>Like</button>}</div>
-                  </Card></div>) : null}
-                </div>
-                <svg onClick={() => this.setState({ expandedThread: !this.state.expandedThread })} className="bi bi-three-dots-vertical" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <svg onClick={()=>this.setState({expands: !this.state.expands, myid: reply.id })} className="bi bi-three-dots-vertical" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                 </svg>
               </div>
+              {this.context.isLogged ? this.state.myid == reply.id && this.state.expands? (this.context.isAdmin? (
+
+                <button className="delete-btn" onClick={this.deleteComment}>Delete</button>
+              )
+                : (<button className="btn-green-moon" >Like</button>) ): null : null}
+
+
               <div className="border-bottom secondary row align-items-center " style={{ paddingLeft: '30px' }}>
                 <div> <div className={`profile ${colors[this.numberFromText(reply.username)]} `} >
                   <div className='name'>{reply.username.charAt(0)}</div>
@@ -142,13 +166,13 @@ export default class PostFull extends Component {
 
             </Card.Body>
           </Card>
-        </ul>
+        </ul >
       )
     })
 
     return (
 
-      <Loader loaded={this.state.loaded}>
+      <Loader loaded={this.state.loaded} >
         <Jumbotron className="container-Jumbotron list">
           <div className="row">
             <AuthConsumer>
@@ -160,18 +184,16 @@ export default class PostFull extends Component {
               <Card className='mx-auto responsive card-item shadow p-3 mb-5 bg-white rounded' border="Secondary">
                 <Card.Body>
                   <div className="row justify-content-end">
-                    <div >
-                      {this.state.expandedReply ? (<div><Card style={{ width: "100px" }}><div> {this.context.currentUser.name == "admin" ? <button className="delete-btn" >Delete</button> : <button className="btn-green-moon" onClick={this.likePost.bind(this, this.state.post.id)}>Like</button>}</div>
-
-                      </Card></div>) : null}
-
-                    </div>
-                    <svg onClick={() => this.setState({ expandedThread: !this.state.expandedThread })} className="bi bi-three-dots-vertical" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <svg onClick={() => this.setState({ expandedThread: !this.state.expandedThread})} className="bi bi-three-dots-vertical" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                       <path fillRule="evenodd" d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                     </svg>
-
-
                   </div>
+                  {this.context.isLogged ? this.state.expandedThread ? this.context.isAdmin ? (
+
+                    <button className="delete-btn" onClick={this.deleteArticle}>Delete</button>
+                  )
+                    : (<button className="btn-green-moon" >Like</button>) : null : null}
+
                   <Card.Title className=" card-item bold  border-bottom secondary" style={{ padding: '30px' }}>
                     {this.state.post.title}
                   </Card.Title>
@@ -189,7 +211,7 @@ export default class PostFull extends Component {
                   </Card.Text>
                   <div className="row justify-content-between">
                     <div><p>{'Replies ' + this.state.repliesLength}</p>
-                      <svg onClick={() => this.setState({ replycard: !this.state.replycard })} className="bi bi-reply-fill" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <svg onClick={this.context.isLogged? () => this.setState({ replycard: !this.state.replycard }):() => this.setState({modal: !this.state.modal})} className="bi bi-reply-fill" width="3em" height="3em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9.079 11.9l4.568-3.281a.719.719 0 0 0 0-1.238L9.079 4.1A.716.716 0 0 0 8 4.719V6c-1.5 0-6 0-7 8 2.5-4.5 7-4 7-4v1.281c0 .56.606.898 1.079.62z" />
                       </svg>
                     </div>
@@ -205,7 +227,7 @@ export default class PostFull extends Component {
                   </div>
                 </Card.Body>
               </Card>
-              {this.state.replycard ? (<div>
+              {this.state.replycard && this.context.isLogged?  (<div>
                 <Card className='mx-auto responsive' border="Secondary" style={{ backgroundColor: '#B0C4DE', float: 'none' }}>
                   <input id="text" type="text" onChange={this.onChange} style={{ height: "300px" }}></input>
 
@@ -220,6 +242,9 @@ export default class PostFull extends Component {
             </Container>
           </div>
         </Jumbotron>
+        <Modal
+          centered
+          show={this.state.modal} onHide={() => this.setState({ modal: !this.state.modal })}><Login pass={this.props} unmount={this.UnmountModal} /></Modal>
       </Loader>
     )
   }

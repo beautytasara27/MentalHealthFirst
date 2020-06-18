@@ -84,11 +84,11 @@ export default class ManageuserAccounts extends Component {
                     <li>
                         <div>
                             <ListGroup.Item>
-                                <div className="row text">
+                                <div className="row ">
                                     <div id="profile" className={colors[this.numberFromText(post.name)]}>
                                         <div id='name'>{post.name.charAt(0)}</div>
                                     </div>
-                                    <div className="col">{post.name}</div>
+                                    <div className="col ">{post.name}</div>
                                     <div className="col"><p>{post.email}</p></div>
                                     <div className="row justify-content-end">
                                         <div className=" col "><button className="delete-btn" onClick={this.deleteUser.bind(this, post.id)}>Delete</button></div>

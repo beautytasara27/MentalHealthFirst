@@ -16,7 +16,6 @@ export default class CustomNavBar extends Component {
     UnmountModal = () => {
         this.setState({ modal: !this.state.modal })
     }
-
     render() {
 
         return (
@@ -26,7 +25,7 @@ export default class CustomNavBar extends Component {
                     <Navbar.Collapse id="responsive-navbar-nav" >
                         <AuthConsumer>
                             {({ logout, currentUser }) => (
-                                <div className="row justify-content-between">
+                                <div className=" padding-right">
                                     <Nav className="mr-auto" >
                                         <div className="row justify-content-between">
                                             <Link to={'/'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Home </h5></Link>

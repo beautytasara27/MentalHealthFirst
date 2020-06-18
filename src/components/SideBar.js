@@ -11,7 +11,7 @@ export default class Sidebar extends Component {
                     <Nav.Link href="/createArticle">New Article</Nav.Link>
                     <Nav.Link href="/accounts"> Manage Users</Nav.Link>
                     <Nav.Link href="/home">Manage Articles</Nav.Link>
-                    <Nav.Link href="/forum">Manage Posts</Nav.Link>
+                    <Nav.Link href="/">Manage Posts</Nav.Link>
                 </Nav>
             </div>
         )

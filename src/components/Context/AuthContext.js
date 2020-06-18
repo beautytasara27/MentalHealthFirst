@@ -8,12 +8,12 @@ class AuthProvider extends React.Component {
 
   constructor() {
     super();
-    this.state = { user: null, isAdmin: true, authTokens: existingTokens }
+    this.state = { user: null, isAdmin: false, isLogged: false, authTokens: existingTokens }
 
   }
   setTokens = (data) => {
     localStorage.setItem("tokens", JSON.stringify(data));
-    this.setState({ authTokens: data });
+    this.setState({ authTokens: data, isLogged : true });
     this.getUser()
     console.log("triggered", this.state.authTokens)
 
@@ -34,7 +34,7 @@ class AuthProvider extends React.Component {
 
     axios(config)
       .then((response) =>{
-        this.setState({ user: response.data })
+        this.setState({ user: response.data , isLogged : true })
         if (response.data.name == "admin"){
           this.setState({isAdmin: true})
         }
@@ -51,7 +51,7 @@ class AuthProvider extends React.Component {
 
   render() {
     return (
-      <AuthContext.Provider value={{ currentUser: this.state.user, isAdmin: this.state.isAdmin, authTokens: this.state.authTokens, setAuthTokens: this.setTokens, logout: this.logout }}>
+      <AuthContext.Provider value={{ currentUser: this.state.user, isAdmin: this.state.isAdmin, isLogged:this.state.isLogged, authTokens: this.state.authTokens, setAuthTokens: this.setTokens, logout: this.logout }}>
         {this.props.children}
       </AuthContext.Provider>
     )

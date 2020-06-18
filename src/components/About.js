@@ -12,7 +12,7 @@ export default class Contact extends Component {
                 <div className="col-lg-6 col-md-6  col-sm-12 col-xs-12 col-xl-3 " style={{ backgroundColor: '#91BB7F', padding: '20px', position: "center", }} >
                     <h2 className="text-center display-4 texty">{About.subtitle} </h2>
                     <h1 className="text-center texty" >{About.title}</h1>
-                    <p className="text-center text">{About.content}</p>
+                    <p className="text-center ">{About.content}</p>
                 </div>
 
             </Jumbotron>

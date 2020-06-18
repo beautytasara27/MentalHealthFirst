@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { Component } from 'react'
-import {Container,Card} from 'react-bootstrap'
+import { Container, Card } from 'react-bootstrap'
 import Dotdotdot from 'react-dotdotdot'
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
@@ -51,7 +51,7 @@ class Home extends Component {
             })
     }
     handleClick = (post) => {
-        this.props.history.push({ pathname: '/PostFull/' + post.id , state: post.dateCreated})
+        this.props.history.push({ pathname: '/PostFull/' + post.id, state: post.dateCreated })
         console.log("post is", post)
     }
     render() {
@@ -71,7 +71,7 @@ class Home extends Component {
                                                 year: "numeric",
                                                 month: "long",
                                                 day: "2-digit"
-                                              }).format(Date.parse(post.dateCreated))}</Card.Text>
+                                            }).format(Date.parse(post.dateCreated))}</Card.Text>
                                             <Card.Title>{post.title}</Card.Title>
                                             <Dotdotdot clamp={4}><p>{post.content}</p></Dotdotdot>
                                         </Card.Body>
@@ -86,7 +86,7 @@ class Home extends Component {
 
             )
         })
-       
+
         const cardDeckk = this.state.Articles.slice(1).map(post => {
             return (
                 <Container key={post.id}>
@@ -99,7 +99,7 @@ class Home extends Component {
                                         year: "numeric",
                                         month: "long",
                                         day: "2-digit"
-                                      }).format(Date.parse(post.dateCreated))}</Card.Text>
+                                    }).format(Date.parse(post.dateCreated))}</Card.Text>
                                 </div>
                                 <Card.Img variant="top" src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80" />
 
@@ -111,37 +111,39 @@ class Home extends Component {
                             </Card>
                         </button>
                     </Container>
-
                 </Container>
             )
         })
+        // <AuthConsumer>
+        //                     {({ currentUser }) => (<div>
+        //                         <div>{currentUser && currentUser.name == 'admin' ? <SideBar /> : <SearchSideBar data={this.state.Articles} handleClick={this.handleClick} />}</div>
+        //                     </div>)}
+        //                 </AuthConsumer>
 
         return (
+
             <Loader loaded={this.state.loaded}>
-                <div className="container-fluid">
-                    <div className="row ">
-                        <AuthConsumer>
-                            {({ currentUser }) => (<div>
-                                <div>{currentUser? <SideBar /> : <SearchSideBar data={this.state.Articles} handleClick={this.handleClick}/>}</div>
-                            </div>)}
-                        </AuthConsumer>
+                <div className="row justify-content-between">
+                    
+                    <SearchSideBar data={this.state.Articles} handleClick={this.handleClick} />
                         <div className="fluid border-bottom secondary container-Jumbotron" >
                             <div className="container">
                                 <ul>{postList}</ul>
                             </div>
                         </div>
-                        </div>
-
-                        <h3 className="display-4 texty" style={{ fontSize: '4vw' }}>Recent Posts</h3>
-                        <div className="container-fluid border-top secondary" style={{paddingTop:"30px"}}>
-
-                            <Carousel  responsive={responsive}>
-                                {cardDeckk}
-                            </Carousel>
-                        </div>
                     
+                    <div className="container-fluid border-top secondary" style={{ paddingTop: "30px" }}>
+                    <h3 className="display-4 texty" style={{ fontSize: '4vw' }}>Recent Posts</h3>
+                    <div className="container">
+                        <Carousel responsive={responsive}>
+                            {cardDeckk}
+                        </Carousel>
+                        </div>
+                    </div>
+
                 </div>
             </Loader>
+
 
 
 
