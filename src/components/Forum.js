@@ -4,15 +4,19 @@ import DatatablePage from './DataTable'
 import axios from 'axios'
 import './styler.css'
 import Loader from 'react-loader'
-import { AuthConsumer } from './Context/AuthContext'
+import { AuthConsumer, AuthContext } from './Context/AuthContext'
 import Sidebar from './SideBar'
+import {Modal} from 'react-bootstrap'
+import Login from './Login'
 
 export default class Forum extends Component {
+  static contextType = AuthContext
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
-      loaded: false
+      loaded: false,
+      modal: false
     }
 
   }
@@ -30,7 +34,11 @@ export default class Forum extends Component {
   }
   createPost = (e) => {
     e.preventDefault();
-    this.props.history.push('/createThread')
+    (this.context.currentUser ? this.props.history.push('/createThread') : this.setState({ modal: !this.state.modal }))
+  
+  }
+  UnmountModal = () => {
+    this.setState({ modal: !this.state.modal })
   }
   render() {
     return (
@@ -54,9 +62,12 @@ export default class Forum extends Component {
             <hr />
             <span className="span-top"></span>
             <DatatablePage data={this.state.posts} props={this.props} />
-           
+
           </div>
         </div>
+        <Modal
+          centered
+          show={this.state.modal} onHide={() => this.setState({ modal: !this.state.modal })}><Login pass={this.props} unmount={this.UnmountModal} /></Modal>
       </Loader>
     )
   }

@@ -32,18 +32,21 @@ export default class CreateArticle extends Component {
     post = (e) => {
         e.preventDefault();
         axios.post('https://forumcoreapplication.herokuapp.com/v1/articles', { content: this.state.content, title: this.state.title, username: this.state.username }).then((res) => {
-            console.log(res);
-            console.log(res.data);
-        });
+            //console.log(res);
+            alert("your article has been saved")
+            
+        }).catch((err)=>{
+            alert("There was an error processing your request")
+        })
     }
     render() {
         return (
             <div className="row">
-                <AuthConsumer>
-                    {({ isAdmin }) => (<div>
-                        <div>{isAdmin ? <Sidebar /> : null}</div>
-                    </div>)}
-                </AuthConsumer>
+            <AuthConsumer>
+            {({ isAdmin }) => (<div>
+                <div>{isAdmin? <Sidebar /> : null}</div>
+            </div>)}
+        </AuthConsumer>
 
                 <Container className="shadow">
                     <Jumbotron>

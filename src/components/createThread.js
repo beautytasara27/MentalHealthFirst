@@ -4,31 +4,32 @@ import React, { Component } from 'react'
 import { Container, Button, Form, Jumbotron } from 'react-bootstrap';
 import axios from 'axios'
 import './styler.css'
-import { AuthConsumer } from './Context/AuthContext';
+import { AuthConsumer , AuthContext } from './Context/AuthContext';
 import Sidebar from './SideBar';
 
 export default class createThread extends Component {
+    static contextType = AuthContext
     constructor(props) {
         super(props);
         this.state = {
             title: "",
             content: "",
-            username: "taty"
-
+            
         }
     }
     handleChange = (e) => {
         this.setState({ [e.target.id]: e.target.value })
-
     }
 
     post = (e) => {
         e.preventDefault();
         console.log(this.state.content)
-        axios.post('https://forumcoreapplication.herokuapp.com/v1/posts', { content: this.state.content, title: this.state.title, username: this.state.username }).then((res) => {
+        axios.post('https://forumcoreapplication.herokuapp.com/v1/posts', { content: this.state.content, title: this.state.title, username: this.context.currentUser.name }).then((res) => {
             console.log(res.data);
+            alert("your post has been saved")
         }).catch((error) => {
-            console.log(error)
+            //console.log(error)
+            alert("error creating the post")
         })
     }
 
@@ -37,7 +38,7 @@ export default class createThread extends Component {
             <div className="row">
                 <AuthConsumer>
                     {({ isAdmin }) => (<div>
-                        <div>{isAdmin ? <Sidebar /> : null}</div>
+                        <div>{isAdmin? <Sidebar /> : null}</div>
                     </div>)}
                 </AuthConsumer>
                 <Container className="shadow">

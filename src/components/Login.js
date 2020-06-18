@@ -12,7 +12,6 @@ export default class Login extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.signup = this.signup.bind(this);
     this.state = {
       password: '',
       username: '',
@@ -22,7 +21,6 @@ export default class Login extends Component {
 
     }
 
-    console.log(this.props)
   }
   handleChange = (e) => {
     this.setState({
@@ -30,13 +28,8 @@ export default class Login extends Component {
     })
   }
 
-
   //when user press the signup button
-  signup(e) {
-    e.preventDefault();
-    return (this.props.pass.history.push('/signup'));
-  }
-
+ 
   //upon submitting the login form
   handleSubmit = (e) => {
     e.preventDefault();
@@ -57,21 +50,16 @@ export default class Login extends Component {
     };
     axios(config).then(result => {
       this.context.setAuthTokens(result.data);
-      console.log(JSON.stringify(result.data));
+      console.log("my context", this.context);
       this.setState({ isLoggedIn: true });
-      // console.log("token :", result)
+      this.props.unmount();
+      console.log("token :", result)
 
     }).catch(e => {
-      this.setState({ isError: true });
-      console.log(e)
+      alert("Account Information is wrong. Sign up if you are new to the site")
     });
    
-
-   
-    this.props.unmount();
   }
-
-
 
 
   render() {

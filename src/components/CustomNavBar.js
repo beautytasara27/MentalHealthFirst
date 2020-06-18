@@ -8,6 +8,7 @@ import Login from './Login'
 import './styler.css'
 
 export default class CustomNavBar extends Component {
+   
     state = {
         expanded: false,
         modal: false
@@ -25,7 +26,7 @@ export default class CustomNavBar extends Component {
                     <Navbar.Collapse id="responsive-navbar-nav" >
 
                         <AuthConsumer>
-                            {({ isAuth, authTokens, logout }) => (
+                            {({ isAuth, authTokens, logout, currentUser }) => (
                                 <div className="row justify-content-between">
                                     <Nav className="mr-auto " >
                                         <div className="row justify-content-between">
@@ -36,9 +37,9 @@ export default class CustomNavBar extends Component {
                                                <div >
                                             {authTokens ? (
                                                 <div  className="inline float-right float row justify-content-end">
-                                                    <Link className="nav-link" onClick={logout}>LogOut |</Link>
-                                                    <NavDropdown title="{isAuth.displayName}" id="collasible-nav-dropdown">
-                                                        <Link to="/ProfilePage" style={{ color: "white" }}>Profile Settings</Link>
+                                                    <Link to="" className="nav-link" onClick={logout}>LogOut |</Link>
+                                                    <NavDropdown title={currentUser? currentUser.name : "Username"} id="collasible-nav-dropdown">
+                                                        <Link to="/ProfilePage" style={{ color: "black" }}>Account Settings</Link>
                                                     </NavDropdown>
                                                 </div>
                                             ) :

@@ -2,14 +2,13 @@
 import React from 'react'
 import axios from 'axios'
 
-const AuthContext = React.createContext({ user: null })
+const AuthContext = React.createContext()
 const existingTokens = (localStorage.getItem("tokens"));
 class AuthProvider extends React.Component {
 
-  state = { user: null, isAdmin: true, authTokens: existingTokens }
   constructor() {
     super();
-
+    this.state = { user: null, isAdmin: true, authTokens: existingTokens }
 
   }
   setTokens = (data) => {
@@ -36,6 +35,12 @@ class AuthProvider extends React.Component {
     axios(config)
       .then((response) =>{
         this.setState({ user: response.data })
+        if (response.data.name == "admin"){
+          this.setState({isAdmin: true})
+        }
+        else{
+          this.setState({isAdmin:false})
+        }
         console.log("my user", JSON.stringify(response.data), "mystate user ", this.state.user);
       })
       .catch( (error) =>{
@@ -46,7 +51,7 @@ class AuthProvider extends React.Component {
 
   render() {
     return (
-      <AuthContext.Provider value={{ isAuth: this.state.user, isAdmin: this.state.isAdmin, authTokens: this.state.authTokens, setAuthTokens: this.setTokens, logout: this.logout }}>
+      <AuthContext.Provider value={{ currentUser: this.state.user, isAdmin: this.state.isAdmin, authTokens: this.state.authTokens, setAuthTokens: this.setTokens, logout: this.logout }}>
         {this.props.children}
       </AuthContext.Provider>
     )

@@ -31,7 +31,7 @@ export default class SearchSideBar extends Component {
             )
         })
         return (
-            <div className="faint text" style={{ padding: "30px"}}>
+            <div className="faint card-item" style={{ padding: "30px"}}>
                 <input type="text" id="myInput" onChange={this.updateSearch} placeholder="Search for Articles.."></input>
                 <Nav defaultActiveKey="/home" className="flex-column" >
                     {articles}

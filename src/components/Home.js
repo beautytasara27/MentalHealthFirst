@@ -121,8 +121,8 @@ class Home extends Component {
                 <div className="container-fluid">
                     <div className="row ">
                         <AuthConsumer>
-                            {({ isAdmin }) => (<div>
-                                <div>{isAdmin ? <SideBar /> : <SearchSideBar data={this.state.Articles} handleClick={this.handleClick}/>}</div>
+                            {({ currentUser }) => (<div>
+                                <div>{currentUser? <SideBar /> : <SearchSideBar data={this.state.Articles} handleClick={this.handleClick}/>}</div>
                             </div>)}
                         </AuthConsumer>
                         <div className="fluid border-bottom secondary container-Jumbotron" >
