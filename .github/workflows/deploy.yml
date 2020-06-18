@@ -1,7 +1,7 @@
 name: CD
 
 on:
-  pull_request:
+  push:
     types: [closed]
     branches:
       - master
@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 if: github.event.pull_request.merged
 
-    steps:
-      - name: checkout
-        if: github.event.pull_request.merged
-        uses: actions/checkout@v1
+  steps:
+    - name: checkout
+      if: github.event.pull_request.merged
+      uses: actions/checkout@v1
 with:
 ref: master
 
 
 -name: Nightly deploy
- run: curl -X POST -d {} https://api.netlify.com/build_hooks/5eea5a852a0c9301f8cf6009
+  run: curl -X POST -d {} https://api.netlify.com/build_hooks/5eea5a852a0c9301f8cf6009
   
