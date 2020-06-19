@@ -28,8 +28,8 @@ export default class Forum extends Component {
 
     }).
       catch((error) => {
-     //   console.log(error)
-        this.props.history.push({ pathname: "/NetworkError" })
+        console.log(error)
+        //this.props.history.push({ pathname: "/NetworkError" })
       })
   }
   createPost = (e) => {
