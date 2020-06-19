@@ -41,22 +41,22 @@ class Home extends Component {
     componentDidMount() {
         axios.get("https://forumcoreapplication.herokuapp.com/v1/articles").then(res => {
 
-            console.log(res.data)
+           // console.log(res.data)
             this.setState({ Articles: res.data, loaded: true })
         }).
             catch((error) => {
-                console.log(error)
+           //     console.log(error)
                 this.props.history.push({ pathname: '/NetworkError' })
 
             })
     }
     handleClick = (post) => {
         this.props.history.push({ pathname: '/PostFull/' + post.id, state: post.dateCreated })
-        console.log("post is", post)
+       // console.log("post is", post)
     }
     render() {
         //
-        console.log("my articles", this.state.Articles)
+       // console.log("my articles", this.state.Articles)
         const postList = this.state.Articles.slice(0, 3).map(post => {
             return (
                 <li key={post.id} className="list">

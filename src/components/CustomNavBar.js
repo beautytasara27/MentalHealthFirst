@@ -20,12 +20,12 @@ export default class CustomNavBar extends Component {
 
         return (
             <div>
-                <Navbar expanded={this.state.expanded} className="navbar-default navy" expand="sm" sticky="top">
+                <Navbar  expanded={this.state.expanded} className="navbar-default navy" expand="sm" sticky="top" >
                     <Navbar.Toggle onClick={() => this.setState({ expanded: this.state.expanded ? false : true })} aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" >
                         <AuthConsumer>
                             {({ logout, currentUser }) => (
-                                <div className=" padding-right">
+                                <div className=" container">
                                     <Nav className="mr-auto" >
                                         <div className="row justify-content-between">
                                             <Link to={'/'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Home </h5></Link>

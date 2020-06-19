@@ -15,7 +15,7 @@ class AuthProvider extends React.Component {
     localStorage.setItem("tokens", JSON.stringify(data));
     this.setState({ authTokens: data, isLogged : true });
     this.getUser()
-    console.log("triggered", this.state.authTokens)
+   // console.log("triggered", this.state.authTokens)
 
   }
   logout = () => {
@@ -23,10 +23,10 @@ class AuthProvider extends React.Component {
     localStorage.removeItem('tokens');
   }
   getUser = () => {
-    console.log("tokkv", this.state.authTokens)
+  //  console.log("tokkv", this.state.authTokens)
     var config = {
       method: 'get',
-      url: 'http://localhost:7004/api/users/me',
+      url: 'https://forumuaapplication.herokuapp.com/api/users/me',
       headers: {
         'Authorization': `Bearer ${this.state.authTokens.access_token}`
       }
@@ -41,10 +41,10 @@ class AuthProvider extends React.Component {
         else{
           this.setState({isAdmin:false})
         }
-        console.log("my user", JSON.stringify(response.data), "mystate user ", this.state.user);
+      //  console.log("my user", JSON.stringify(response.data), "mystate user ", this.state.user);
       })
       .catch( (error) =>{
-        console.log(error);
+       // console.log(error);
       });
   }
 

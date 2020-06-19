@@ -8,16 +8,16 @@ class DatatablePage extends Component {
     super(props);
     this.state={
       currentPage:1,
-      postsPerPage:3,
+      postsPerPage:10,
       search:""
     }
    
-    console.log("props", this.props)
+   // console.log("props", this.props)
   }
 
   handleClick = (rowId) => {
     this.props.props.history.push({ pathname: 'forum/' + rowId })
-    console.log("row is", rowId)
+  //  console.log("row is", rowId)
   }
   handlePageChange = (pageNumber) => {
 
@@ -91,7 +91,7 @@ this.setState({search: e.target.value.substr(0,20)})
         
         <Pagination
           activePage={this.state.currentPage}
-          itemsCountPerPage={3}
+          itemsCountPerPage={this.state.postsPerPage}
           totalItemsCount={this.props.data.length}
           pageRangeDisplayed={3}
           itemClass="page-item username"

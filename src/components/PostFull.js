@@ -18,13 +18,13 @@ export default class PostFull extends Component {
   }
   componentDidMount() {
     axios.get(`https://forumcoreapplication.herokuapp.com/v1/articles/getById/${this.props.match.params.postId}`).then(res => {
-      console.log(res.data)
+     // console.log(res.data)
       // this.setState({articles: res.data})
       this.setState({ article: res.data })
 
     }).
       catch((error) => {
-        console.log(error)
+      //  console.log(error)
         this.props.history.push('/nomatch')
       })
 
@@ -34,22 +34,22 @@ export default class PostFull extends Component {
     //code to delete
     axios.delete(`https://forumcoreapplication.herokuapp.com/v1/articles/${this.state.article.id}`)
       .then(res => {
-        console.log(res);
+      //  console.log(res);
         this.componentDidMount();
-        console.log(res.data);
+      //  console.log(res.data);
       }).catch((err) => {
-        console.log(err)
+      //  console.log(err)
         this.props.history.push('/nomatch')
       })
     this.setState({ expanded: false })
   }
   likeComment = (id) => {
-    console.log(id, "myid")
+    //console.log(id, "myid")
     axios.get(`https://forumcoreapplication.herokuapp.com/v1/articles/${id}`).then(res => {
       this.componentDidMount();
-      console.log(res.data);
+     // console.log(res.data);
     }).catch((err) => {
-      console.log(err)
+     // console.log(err)
     })
   }
   //   <div className="row justify-content-end">
@@ -80,7 +80,7 @@ export default class PostFull extends Component {
 //   : (null) : null : null}
 
   render() {
-    const Datey = this.state.article.dateCreated
+  //  const Datey = this.state.article.dateCreated
     return (
 
       <div className="container-fluid" style={{ backgroundColor: 'white', paddingTop: "20px", listStyle: "none" }}>

@@ -24,11 +24,11 @@ export default class Forum extends Component {
     axios.get("https://forumcoreapplication.herokuapp.com/v1/posts").then(res => {
 
       this.setState({ posts: res.data, loaded: true })
-      console.log("my posts", this.state.posts)
+     // console.log("my posts", this.state.posts)
 
     }).
       catch((error) => {
-        console.log(error)
+     //   console.log(error)
         this.props.history.push({ pathname: "/NetworkError" })
       })
   }
@@ -72,8 +72,12 @@ export default class Forum extends Component {
       <Loader loaded={this.state.loaded}>
         <div className="container-fluid" style={{ "margin" : "50px 0px"}}>
           <div className="row">
-            <div className="col-md-2">
-              
+            <div >
+            <AuthConsumer>
+            {({ isAdmin }) => (<div>
+              <div>{isAdmin ? <Sidebar /> : null}</div>
+            </div>)}
+          </AuthConsumer>
             </div>
             <div className="container border primary text shadow">
               <hr />

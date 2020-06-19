@@ -31,7 +31,7 @@ export default class ManageuserAccounts extends Component {
         var auth = this.context.authTokens.access_token
         var config = {
             method: 'get',
-            url: 'http://localhost:7004/api/users',
+            url: 'https://forumuaapplication.herokuapp.com/api/users',
             headers: { 
               'Authorization': `Bearer ${auth}`
             }
@@ -39,20 +39,20 @@ export default class ManageuserAccounts extends Component {
           
           axios(config)
           .then( (response) =>{
-            console.log(response)
+          //  console.log(response)
             this.setState({users:response.data})
             
           })
           .catch( (error) =>{
-            console.log(error);
+          //  console.log(error);
           });
           
     }
     deleteUser = (postId) => {
-        axios.delete(`http://localhost:7004/api/users/${postId}`).then((res) => {
+        axios.delete(`https://forumuaapplication.herokuapp.com/api/users/${postId}`).then((res) => {
             this.setState({ resfreh: !this.state.refresh })
         }).catch((err) => {
-            console.log(err)
+        //    console.log(err)
         })
     }
     paginate = (number) => {

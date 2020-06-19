@@ -35,14 +35,14 @@ export default class PostFull extends Component {
   }
 
   componentDidMount = () => {
-    console.log("id of: ", this.state.id)
+    //console.log("id of: ", this.state.id)
     axios.get("https://forumcoreapplication.herokuapp.com/v1/comments/" + this.props.match.params.threadId).then(res => {
 
-      console.log(res.data)
+     // console.log(res.data)
       this.setState({ replies: res.data, loaded: true, repliesLength: res.data.length })
     }).
       catch((error) => {
-        console.log(error)
+       // console.log(error)
 
       })
     axios.get(`https://forumcoreapplication.herokuapp.com/v1/posts/getPostById/${this.props.match.params.threadId}`).then(res => {
@@ -57,40 +57,40 @@ export default class PostFull extends Component {
   postReply = () => {
     this.setState({ replycard: !this.state.replycard }, () => { console.log("truth", this.state.replycard) })
     axios.post("https://forumcoreapplication.herokuapp.com/v1/comments/", { content: this.state.text, postId: this.props.match.params.threadId, username: this.context.currentUser.name }).then(res => {
-      console.log(res.data);
+    //  console.log(res.data);
       this.componentDidMount();
     }).catch((err) => {
-      console.log(err)
+    //  console.log(err)
     })
 
   }
 
   likeComment = (id) => {
-    console.log(id, "myid")
+    //console.log(id, "myid")
     axios.get(`https://forumcoreapplication.herokuapp.com/v1/comments/like/${id}`).then(res => {
       this.componentDidMount();
-      console.log(res.data);
+     // console.log(res.data);
     }).catch((err) => {
-      console.log(err)
+    //  console.log(err)
     })
   }
   likePost = (id) => {
-    console.log(id, "myid")
+    //console.log(id, "myid")
     axios.get(`https://forumcoreapplication.herokuapp.com/v1/posts/${id}`).then(res => {
       this.componentDidMount();
-      console.log(res.data);
+    //  console.log(res.data);
     }).catch((err) => {
-      console.log(err)
+   //   console.log(err)
     })
   }
 
   deleteComment = (id) => {
-    console.log(id, "myid")
+   // console.log(id, "myid")
     axios.delete("https://forumcoreapplication.herokuapp.com/v1/comments/" + id).then(res => {
       this.componentDidMount();
-      console.log(res.data);
+    //  console.log(res.data);
     }).catch((err) => {
-      console.log(err)
+   //   console.log(err)
     })
   }
   UnmountModal = () => {
