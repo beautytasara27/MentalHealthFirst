@@ -1,14 +1,24 @@
-name: CD
+ name: CD
 
 on:
   push:
+    types: [closed]
     branches:
       - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Nightly deploy
-        run: curl -X POST -d {} https://api.netlify.com/build_hooks/5eea5a852a0c9301f8cf6009
+if: github.event.pull_request.merged
+
+  steps:
+    - name: checkout
+      if: github.event.pull_request.merged
+      uses: actions/checkout@v1
+with:
+ref: master
+
+
+-name: Nightly deploy
+  run: curl -X POST -d {} https://api.netlify.com/build_hooks/5eea5a852a0c9301f8cf6009
   

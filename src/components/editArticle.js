@@ -18,7 +18,7 @@ export default class editArticle extends Component {
 
         }
         this.handleChange = this.handleChange.bind(this);
-        console.log(this.props)
+     //   console.log(this.props)
     }
     handleChange(e) {
         this.setState({ [e.target.id]: e.target.value })
@@ -44,8 +44,8 @@ export default class editArticle extends Component {
         console.log(article)
         console.log(this.state.content)
         axios.patch('http://localhost:7003/v1/articles', { content: this.state.content, title: this.state.title, username: this.state.username }).then((res) => {
-            console.log(res);
-            console.log(res.data);
+          //  console.log(res);
+          //  console.log(res.data);
         });
     }
     render() {

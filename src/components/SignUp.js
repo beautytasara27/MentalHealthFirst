@@ -5,8 +5,10 @@ import { Jumbotron, Form, Container, Button, Modal } from 'react-bootstrap'
 import axios from 'axios'
 const isNumberRegx = /\d/;
 const specialCharacterRegx = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+import {AuthContext} from './Context/AuthContext'
 
 export default class Signup extends Component {
+  static contextType = AuthContext
   constructor(props) {
     super(props)
     this.state = {
@@ -56,13 +58,37 @@ export default class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    var data = new FormData();
+    data.append('username', this.state.displayName);
+    data.append('password', this.state.password);
+    data.append('grant_type', 'password');
+
     var access = {Username: 'uaa', Password: 'password@123'} 
     if (this.state.password == this.state.confirm) {
-      axios({method:'post', url:'http://localhost:7004/api/users', data:{ email: this.state.email, name: this.state.displayName, password: this.state.password ,profilePicture : ""}, headers: {'Authorization': `Basic ${access}`}}).then((res) => {
-        console.log("toky",res)
+      axios({method:'post', url:'https://forumuaapplication.herokuapp.com/api/users', data:{ email: this.state.email, name: this.state.displayName, password: this.state.password ,profilePicture : ""}, headers: {'Authorization': `Basic ${access}`}}).then((res) => {
+       // console.log("toky",res)
+        var config = {
+          method: 'post',
+          url: 'https://forumuaapplication.herokuapp.com/oauth/token',
+          headers: {
+            'Authorization': 'Basic dWFhOnBhc3N3b3JkQDEyMw==',
+            //...data.getHeaders()
+          },
+          data: data
+        };
+        axios(config).then(result => {
+          this.context.setAuthTokens(result.data);
+         // console.log("my context", this.context);
+          //this.setState({ isLoggedIn: true });
+         // this.props.unmount();
+         //  console.log("token :", result)
+    
+        }).catch(e => {
+          alert("Account Information is wrong. Sign up if you are new to the site")
+        });
       this.props.history.push('/forum')
       }).catch((error) => {
-        console.log(error)
+       // console.log(error)
       })
     }
     else {

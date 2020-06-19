@@ -4,10 +4,11 @@ import Sidebar from './SideBar';
 import axios from 'axios'
 import '../components/styler.css'
 import Pagination from "react-js-pagination";
+import {AuthContext} from './Context/AuthContext'
 
 const colors = ['bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-dark', 'bg-light'];
 export default class ManageuserAccounts extends Component {
-
+    static contextType = AuthContext
     constructor(props) {
         super(props);
         this.state = {
@@ -21,22 +22,37 @@ export default class ManageuserAccounts extends Component {
             next: 0,
             lastVisible: 0,
             firstVisible: 0,
+            
 
         };
 
     }
     componentDidMount = () => {
-        axios.get('http://localhost:7004/api/users').then((res) => {
-            this.setState({ users: res.data })
-        }).catch((err) => {
-            console.log(err)
-        })
+        var auth = this.context.authTokens.access_token
+        var config = {
+            method: 'get',
+            url: 'https://forumuaapplication.herokuapp.com/api/users',
+            headers: { 
+              'Authorization': `Bearer ${auth}`
+            }
+          };
+          
+          axios(config)
+          .then( (response) =>{
+          //  console.log(response)
+            this.setState({users:response.data})
+            
+          })
+          .catch( (error) =>{
+          //  console.log(error);
+          });
+          
     }
     deleteUser = (postId) => {
-        axios.delete(`http://localhost:7004/api/users/${postId}`).then((res) => {
+        axios.delete(`https://forumuaapplication.herokuapp.com/api/users/${postId}`).then((res) => {
             this.setState({ resfreh: !this.state.refresh })
         }).catch((err) => {
-            console.log(err)
+        //    console.log(err)
         })
     }
     paginate = (number) => {
@@ -68,11 +84,11 @@ export default class ManageuserAccounts extends Component {
                     <li>
                         <div>
                             <ListGroup.Item>
-                                <div className="row text">
+                                <div className="row ">
                                     <div id="profile" className={colors[this.numberFromText(post.name)]}>
                                         <div id='name'>{post.name.charAt(0)}</div>
                                     </div>
-                                    <div className="col">{post.name}</div>
+                                    <div className="col ">{post.name}</div>
                                     <div className="col"><p>{post.email}</p></div>
                                     <div className="row justify-content-end">
                                         <div className=" col "><button className="delete-btn" onClick={this.deleteUser.bind(this, post.id)}>Delete</button></div>

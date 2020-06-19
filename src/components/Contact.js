@@ -29,7 +29,7 @@ export default class Contact extends Component {
         return (
             <Jumbotron className="row justify-content-center" style={{ backgroundColor: "white", position: "center", paddingBottom: '200px', paddingTop: "10px" }}>
                 <div className=" col-lg-8 col-md-12  col-sm-12 col-xs-12 col-xl-6 " >
-                    <p className=" text-center text" style={{ padding: '30px' }}  >You can use this form to contact us about anything or to provide feedback and suggestions.
+                    <p className=" text-center " style={{ padding: '30px' }}  >You can use this form to contact us about anything or to provide feedback and suggestions.
 
             If you are looking for support, please post on our our forum instead!</p>
 
