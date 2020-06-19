@@ -17,7 +17,12 @@ export default class PostFull extends Component {
 
   }
   componentDidMount() {
-    axios.get(`https://forumcoreapplication.herokuapp.com/v1/articles/getById/${this.props.match.params.postId}`).then(res => {
+    axios.get(`https://forumcoreapplication.herokuapp.com/v1/articles/getById/${this.props.match.params.postId}`,
+    
+       'Basic dWFhOnBhc3N3b3JkQDEyMw==',
+      //...data.getHeaders()
+    
+    ).then(res => {
      // console.log(res.data)
       // this.setState({articles: res.data})
       this.setState({ article: res.data })
