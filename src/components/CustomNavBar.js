@@ -27,14 +27,14 @@ export default class CustomNavBar extends Component {
                             {({ logout, currentUser }) => (
                                 <div className=" container">
                                     <Nav className="mr-auto" >
-                                        <div className="row justify-content-between">
+                                       
                                             <Link to={'/'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Home </h5></Link>
                                             <Link to={'/contact'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Contact</h5> </Link>
                                             <Link to={'/about'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> About </h5></Link>
                                             <Link to={'/forum'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Forum </h5></Link>
-                                               <div >
+                                              
                                             {currentUser ? (
-                                                <div  className=" inline row justify-content-end">
+                                                <div  className=" row justify-content-end">
                                                     <Link to="" className="nav-link" onClick={logout}>LogOut |</Link>
                                                     <NavDropdown title={currentUser? currentUser.name : "Username"} id="collasible-nav-dropdown">
                                                         <Link to="/ProfilePage" style={{ color: "black" }}>Account Settings</Link>
@@ -42,8 +42,8 @@ export default class CustomNavBar extends Component {
                                                 </div>
                                             ) :
                                                 (<button style={{ backgroundColor: "transparent", color: "white", border: "none" }} className="nav-link" onClick={() => this.setState({ expanded: false, modal: !this.state.modal })} > <h5>Login </h5></button>)}
-                                                </div> 
-                                                </div>
+                                              
+                                                
                                     </Nav>
                                 </div>
                             )
