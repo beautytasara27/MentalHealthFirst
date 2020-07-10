@@ -19,8 +19,9 @@ class AuthProvider extends React.Component {
 
   }
   logout = () => {
-    this.setTokens()
+   // this.setTokens()
     localStorage.removeItem('tokens');
+    this.setState({user: null});
   }
   getUser = () => {
   //  console.log("tokkv", this.state.authTokens)

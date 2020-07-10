@@ -123,10 +123,11 @@ class Home extends Component {
         return (
 
             <Loader loaded={this.state.loaded}>
-                <div className="row justify-content-between">
-                    
+                <div className="row">
+                    <div className="">
                     <SearchSideBar data={this.state.Articles} handleClick={this.handleClick} />
-                        <div className="fluid border-bottom secondary container-Jumbotron" >
+                    </div>
+                        <div className="  border-bottom secondary container" >
                             <div className="container">
                                 <ul>{postList}</ul>
                             </div>
