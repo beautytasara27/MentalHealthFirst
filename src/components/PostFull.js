@@ -44,7 +44,7 @@ export default class PostFull extends Component {
       //  console.log(res.data);
       }).catch((err) => {
       //  console.log(err)
-        this.props.history.push('/nomatch')
+        this.props.history.push('/home')
       })
     this.setState({ expanded: false })
   }
