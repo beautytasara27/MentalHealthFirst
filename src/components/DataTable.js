@@ -40,6 +40,7 @@ this.setState({search: e.target.value.substr(0,20)})
 
 
   render() {
+    console.log(this.props);
     const filteredPosts = this.props.data.filter(
       (post)=>{
         return post.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
