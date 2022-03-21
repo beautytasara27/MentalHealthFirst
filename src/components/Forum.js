@@ -24,7 +24,7 @@ export default class Forum extends Component {
     axios.get("api/v1/posts").then(res => {
 
       this.setState({ posts: res.data, loaded: true })
-     // console.log("my posts", this.state.posts)
+      console.log("my posts", this.state.posts)
 
     }).
       catch((error) => {
