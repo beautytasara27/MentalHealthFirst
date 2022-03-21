@@ -43,7 +43,7 @@ export default class editArticle extends Component {
         var createArticleRequest = JSON.stringify(article)
         console.log(article)
         console.log(this.state.content)
-        axios.patch('/v1/articles', { content: this.state.content, title: this.state.title, username: this.state.username }).then((res) => {
+        axios.patch('/api/v1/articles', { content: this.state.content, title: this.state.title, username: this.state.username }).then((res) => {
           //  console.log(res);
           //  console.log(res.data);
         });

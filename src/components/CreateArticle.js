@@ -31,7 +31,7 @@ export default class CreateArticle extends Component {
     }
     post = (e) => {
         e.preventDefault();
-        axios.post('/v1/articles', { content: this.state.content, title: this.state.title, username: this.state.username }).then((res) => {
+        axios.post('/api/v1/articles', { content: this.state.content, title: this.state.title, username: this.state.username }).then((res) => {
             //console.log(res);
             alert("your article has been saved")
             

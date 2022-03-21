@@ -39,7 +39,7 @@ class Home extends Component {
         }
     }
     componentDidMount() {
-        axios.get("/v1/articles").then(res => {
+        axios.get("/api/v1/articles").then(res => {
 
            // console.log(res.data)
             this.setState({ Articles: res.data, loaded: true })
