@@ -24,7 +24,7 @@ export default class createThread extends Component {
     post = (e) => {
         e.preventDefault();
        // console.log(this.state.content)
-        axios.post('https://forumcoreapplication.herokuapp.com/v1/posts', { content: this.state.content, title: this.state.title, username: this.context.currentUser.name }).then((res) => {
+        axios.post('/api/v1/posts', { content: this.state.content, title: this.state.title, username: this.context.currentUser.name }).then((res) => {
             //console.log(res.data);
             alert("your post has been saved")
         }).catch((error) => {

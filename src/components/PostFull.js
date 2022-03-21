@@ -17,7 +17,7 @@ export default class PostFull extends Component {
 
   }
   componentDidMount() {
-    axios.get(`api/v1/articles/getById/${this.props.match.params.postId}`,
+    axios.get(`/api/v1/articles/getById/${this.props.match.params.postId}`,
     
        'Basic dWFhOnBhc3N3b3JkQDEyMw==',
       //...data.getHeaders()
@@ -37,7 +37,7 @@ export default class PostFull extends Component {
   deleteArticle = (e) => {
     e.preventDefault();
     //code to delete
-    axios.delete(`api/v1/articles/${this.state.article.id}`)
+    axios.delete(`/api/v1/articles/${this.state.article.id}`)
       .then(res => {
       //  console.log(res);
         this.componentDidMount();
@@ -50,7 +50,7 @@ export default class PostFull extends Component {
   }
   likeComment = (id) => {
     //console.log(id, "myid")
-    axios.get(`api/v1/articles/${id}`).then(res => {
+    axios.get(`/api/v1/articles/${id}`).then(res => {
       this.componentDidMount();
      // console.log(res.data);
     }).catch((err) => {
