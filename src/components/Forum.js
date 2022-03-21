@@ -21,7 +21,7 @@ export default class Forum extends Component {
 
   }
   componentDidMount() {
-    axios.get("/api/v1/posts").then(res => {
+    axios.get("/v1/posts").then(res => {
       console.log("my posts", res)
 
       this.setState({ posts: res.data, loaded: true })
