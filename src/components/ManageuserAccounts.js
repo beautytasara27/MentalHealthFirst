@@ -50,9 +50,10 @@ export default class ManageuserAccounts extends Component {
     }
     deleteUser = (postId) => {
         axios.delete(`https://forumuaapplication.herokuapp.com/api/users/${postId}`).then((res) => {
+            alert("user deleted");
             this.setState({ resfreh: !this.state.refresh })
         }).catch((err) => {
-        //    console.log(err)
+            console.log(err);
         })
     }
     paginate = (number) => {

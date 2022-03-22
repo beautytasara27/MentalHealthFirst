@@ -66,19 +66,19 @@ export default class PostFull extends Component {
   }
 
   likeComment = (id) => {
-    //console.log(id, "myid")
+    console.log(id, "myid")
     axios.get(`https://forumcoreapplication.herokuapp.com/v1/comments/like/${id}`).then(res => {
+      alert("comment liked");
       this.componentDidMount();
-     // console.log(res.data);
     }).catch((err) => {
-    //  console.log(err)
+      console.log(err)
     })
   }
   likePost = (id) => {
-    //console.log(id, "myid")
+    console.log(id, "myid")
     axios.get(`https://forumcoreapplication.herokuapp.com/v1/posts/${id}`).then(res => {
+      alert("post liked");
       this.componentDidMount();
-    //  console.log(res.data);
     }).catch((err) => {
    //   console.log(err)
     })
@@ -136,7 +136,7 @@ export default class PostFull extends Component {
 
                 <button className="delete-btn" onClick={this.deleteComment}>Delete</button>
               )
-                : (<button className="btn-green-moon" >Like</button>) ): null : null}
+                : (<button className="btn-green-moon" onClick={this.likeComment.bind(this, reply.id)}>Like</button>) ): null : null}
 
 
               <div className="border-bottom secondary row align-items-center " style={{ paddingLeft: '30px' }}>
@@ -144,7 +144,7 @@ export default class PostFull extends Component {
                   <div className='name'>{reply.username.charAt(0)}</div>
                 </div></div>
                 <div className='col-md-8' > <Card.Title className="username" style={{ padding: '30px' }} >{reply.username}</Card.Title></div>
-                <div className='col-md-2' > <p className="text-muted">{new Intl.DateTimeFormat("en-US", {
+                <div className='col-md-2 date' > <p className="text-muted">{new Intl.DateTimeFormat("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "2-digit"
@@ -192,7 +192,7 @@ export default class PostFull extends Component {
 
                     <button className="delete-btn" onClick={this.deleteArticle}>Delete</button>
                   )
-                    : (<button className="btn-green-moon" >Like</button>) : null : null}
+                    : (<button className="btn-green-moon" onClick={this.likePost.bind(this, this.state.post.id)}>Like</button>) : null : null}
 
                   <Card.Title className=" card-item bold  border-bottom secondary" style={{ padding: '30px' }}>
                     {this.state.post.title}
@@ -216,8 +216,6 @@ export default class PostFull extends Component {
                       </svg>
                     </div>
                     <div>
-
-
                       <p>{"Likes " + this.state.post.likes}</p>
 
                       <svg onClick={this.likePost.bind(this, this.state.post.id)} className="bi bi-heart-fill text-danger" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Navbar, Nav, Row, NavDropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { AuthConsumer } from './Context/AuthContext'
@@ -26,25 +26,28 @@ export default class CustomNavBar extends Component {
                         <AuthConsumer>
                             {({ logout, currentUser }) => (
                                 <div className=" container">
+                               
                                     <Nav className="mr-auto" >
                                        
                                             <Link to={'/'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Home </h5></Link>
                                             <Link to={'/contact'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Contact</h5> </Link>
                                             <Link to={'/about'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> About </h5></Link>
                                             <Link to={'/forum'} style={{ color: "white" }} className="nav-link" onClick={() => this.setState({ expanded: false })} ><h5> Forum </h5></Link>
-                                              
+                                            </Nav>
+                                            <Nav  className="flex justify-end ">
+                                           
                                             {currentUser ? (
-                                                <div  className=" row justify-content-end">
+                                                <Fragment>
                                                     <Link to="" className="nav-link" onClick={logout}>LogOut |</Link>
-                                                    <NavDropdown title={currentUser? currentUser.name : "Username"} id="collasible-nav-dropdown">
-                                                        <Link to="/ProfilePage" style={{ color: "black" }}>Account Settings</Link>
-                                                    </NavDropdown>
-                                                </div>
+                                                        <Link to="/ProfilePage" className='nav-link' style={{ color: "black" }}>{currentUser? currentUser.name : "Username"}</Link>
+                                                        </Fragment>
                                             ) :
-                                                (<button style={{ backgroundColor: "transparent", color: "white", border: "none" }} className="nav-link" onClick={() => this.setState({ expanded: false, modal: !this.state.modal })} > <h5>Login </h5></button>)}
-                                              
-                                                
-                                    </Nav>
+                                                (
+                                                    <button style={{ backgroundColor: "transparent", color: "white", border: "none" }} className="nav-link" onClick={() => this.setState({ expanded: false, modal: !this.state.modal })} > <h5>Login </h5></button>
+                                                    )}
+                                                    </Nav>
+
+                                               
                                 </div>
                             )
 

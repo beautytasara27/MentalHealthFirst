@@ -154,6 +154,7 @@ class PasswordStrengthIndicator extends Component {
           <PasswordStrengthIndicatoritem isValid={this.props.validity.minChar} text="have at least 8 characters" />
           <PasswordStrengthIndicatoritem isValid={this.props.validity.number} text="have at least 1 digit" />
           <PasswordStrengthIndicatoritem isValid={this.props.validity.specialChar} text="have at least 1 special character" />
+
         </ul>
       </div>
     )

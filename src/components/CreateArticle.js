@@ -31,10 +31,11 @@ export default class CreateArticle extends Component {
     }
     post = (e) => {
         e.preventDefault();
-        axios.post('/api/v1/articles', { content: this.state.content, title: this.state.title, username: this.state.username }).then((res) => {
+        axios.post('https://forumcoreapplication.herokuapp.com/v1/articles', { content: this.state.content, title: this.state.title, username: this.state.username }).then((res) => {
             //console.log(res);
             alert("your article has been saved")
-            
+            this.props.history.goBack();
+
         }).catch((err)=>{
             alert("There was an error processing your request")
         })
