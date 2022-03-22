@@ -87,7 +87,8 @@ export default class PostFull extends Component {
   deleteComment = (id) => {
    // console.log(id, "myid")
     axios.delete("https://forumcoreapplication.herokuapp.com/v1/comments/" + id).then(res => {
-      this.componentDidMount();
+      alert("comment deleted");
+      this.props.history.goBack();
     //  console.log(res.data);
     }).catch((err) => {
    //   console.log(err)
